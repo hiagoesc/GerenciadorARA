@@ -1,0 +1,2067 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>GerenciadorARADialogBase</class>
+ <widget class="QDialog" name="GerenciadorARADialogBase">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>600</width>
+    <height>500</height>
+   </rect>
+  </property>
+  <property name="palette">
+   <palette>
+    <active>
+     <colorrole role="Base">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Window">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="ToolTipBase">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </colorrole>
+    </active>
+    <inactive>
+     <colorrole role="Base">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Window">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="ToolTipBase">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </colorrole>
+    </inactive>
+    <disabled>
+     <colorrole role="Base">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Window">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="ToolTipBase">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </colorrole>
+    </disabled>
+   </palette>
+  </property>
+  <property name="windowTitle">
+   <string>Gerenciador ARA</string>
+  </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
+  <widget class="QTabWidget" name="tabWidgetCadastrar">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>160</y>
+     <width>580</width>
+     <height>330</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="tabPosition">
+    <enum>QTabWidget::North</enum>
+   </property>
+   <property name="currentIndex">
+    <number>0</number>
+   </property>
+   <widget class="QWidget" name="processo">
+    <attribute name="title">
+     <string>Processo</string>
+    </attribute>
+    <widget class="QLineEdit" name="lineEditProcesso">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>30</y>
+       <width>140</width>
+       <height>40</height>
+      </rect>
+     </property>
+     <property name="inputMethodHints">
+      <set>Qt::ImhNone</set>
+     </property>
+     <property name="inputMask">
+      <string/>
+     </property>
+     <property name="placeholderText">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="comboBoxTipoAlvara">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>100</y>
+       <width>405</width>
+       <height>40</height>
+      </rect>
+     </property>
+     <item>
+      <property name="text">
+       <string>A - ALVARÁ DE CONSTRUÇÃO</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>B - ALVARÁ DE AMPLIAÇÃO</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>C - ALVARÁ DE TRANSFORMAÇÃO</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>D - ALVARÁ DE REGULARIZAÇÃO</string>
+      </property>
+     </item>
+    </widget>
+    <widget class="QDateEdit" name="dateEditAbertura">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>100</y>
+       <width>140</width>
+       <height>40</height>
+      </rect>
+     </property>
+     <property name="dateTime">
+      <datetime>
+       <hour>0</hour>
+       <minute>0</minute>
+       <second>0</second>
+       <year>2025</year>
+       <month>7</month>
+       <day>17</day>
+      </datetime>
+     </property>
+     <property name="calendarPopup">
+      <bool>true</bool>
+     </property>
+     <property name="timeSpec">
+      <enum>Qt::LocalTime</enum>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="comboBoxTipoProcesso">
+     <property name="geometry">
+      <rect>
+       <x>290</x>
+       <y>30</y>
+       <width>275</width>
+       <height>40</height>
+      </rect>
+     </property>
+     <item>
+      <property name="text">
+       <string>PREF BOOK (ONLINE)</string>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>img/e_proc_laranja.png</normaloff>img/e_proc_laranja.png</iconset>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>PROTOCOLO (PRESENCIALMENTE)</string>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>img/e_proc_azul.png</normaloff>img/e_proc_azul.png</iconset>
+      </property>
+     </item>
+    </widget>
+    <widget class="QLabel" name="labelProcesso">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>140</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Nº do Processo:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="labelAno">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>10</y>
+       <width>120</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Ano:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="labelAbertura">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>80</y>
+       <width>140</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Data de Abertura:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="labelTipoAlvara">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>80</y>
+       <width>120</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Tipo de Alvará:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="labelTipoProcesso">
+     <property name="geometry">
+      <rect>
+       <x>290</x>
+       <y>10</y>
+       <width>280</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Tipo de Abertura do Processo:</string>
+     </property>
+    </widget>
+    <widget class="QCommandLinkButton" name="commandLinkButtonAvancarLocal">
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>255</y>
+       <width>100</width>
+       <height>40</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Segoe UI</family>
+       <pointsize>10</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="layoutDirection">
+      <enum>Qt::LeftToRight</enum>
+     </property>
+     <property name="text">
+      <string>AVANÇAR</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>img/icone_avancar.png</normaloff>img/icone_avancar.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QGroupBox" name="groupBoxRequerente">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>150</y>
+       <width>555</width>
+       <height>100</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Requerente</string>
+     </property>
+     <widget class="QLabel" name="labelRequerenteCPF">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>30</y>
+        <width>130</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>CPF:</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEditRequerenteCPF">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>50</y>
+        <width>130</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="inputMask">
+       <string>000.000.000-00;_</string>
+      </property>
+      <property name="placeholderText">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="labelRequerenteNome">
+      <property name="geometry">
+       <rect>
+        <x>150</x>
+        <y>30</y>
+        <width>130</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Nome:</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEditRequerenteNome">
+      <property name="geometry">
+       <rect>
+        <x>150</x>
+        <y>50</y>
+        <width>395</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="inputMask">
+       <string/>
+      </property>
+      <property name="placeholderText">
+       <string/>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QSpinBox" name="spinBoxAno">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>30</y>
+       <width>120</width>
+       <height>40</height>
+      </rect>
+     </property>
+     <property name="wrapping">
+      <bool>false</bool>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+     <property name="suffix">
+      <string/>
+     </property>
+     <property name="minimum">
+      <number>1500</number>
+     </property>
+     <property name="maximum">
+      <number>2900</number>
+     </property>
+     <property name="value">
+      <number>2025</number>
+     </property>
+    </widget>
+    <widget class="QCommandLinkButton" name="commandLinkButtonCancelar">
+     <property name="geometry">
+      <rect>
+       <x>465</x>
+       <y>255</y>
+       <width>100</width>
+       <height>40</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Segoe UI</family>
+       <pointsize>10</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="layoutDirection">
+      <enum>Qt::LeftToRight</enum>
+     </property>
+     <property name="text">
+      <string>SAIR</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>img/x.png</normaloff>img/x.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+     <property name="autoRepeatDelay">
+      <number>0</number>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="projeto">
+    <attribute name="title">
+     <string>Local</string>
+    </attribute>
+    <widget class="QGroupBox" name="groupBoxInscricaoImobiliaria">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>273</width>
+       <height>161</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Inscrição Imobiliária</string>
+     </property>
+     <widget class="QLabel" name="labelSetor">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>55</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Setor:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="labelQuadra">
+      <property name="geometry">
+       <rect>
+        <x>75</x>
+        <y>20</y>
+        <width>55</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Quadra:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="labelLote">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>20</y>
+        <width>55</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Lote:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="labelUnidade">
+      <property name="geometry">
+       <rect>
+        <x>205</x>
+        <y>20</y>
+        <width>55</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Unidade:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="labelInscricaoImobiliaria">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>90</y>
+        <width>240</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Inscrição Imobiliária:</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEditSetor">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>40</y>
+        <width>55</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="frame">
+       <bool>true</bool>
+      </property>
+      <property name="echoMode">
+       <enum>QLineEdit::Normal</enum>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+      <property name="dragEnabled">
+       <bool>false</bool>
+      </property>
+      <property name="readOnly">
+       <bool>false</bool>
+      </property>
+      <property name="placeholderText">
+       <string>00</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEditQuadra">
+      <property name="geometry">
+       <rect>
+        <x>75</x>
+        <y>40</y>
+        <width>55</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+      <property name="placeholderText">
+       <string>0000</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEditLote">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>40</y>
+        <width>55</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+      <property name="placeholderText">
+       <string>0000</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEditUnidade">
+      <property name="geometry">
+       <rect>
+        <x>205</x>
+        <y>40</y>
+        <width>55</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+      <property name="placeholderText">
+       <string>0000</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEditInscricaoImobiliaria">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>110</y>
+        <width>250</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="inputMask">
+       <string>00.0000.0000.0000;_</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+      </property>
+      <property name="placeholderText">
+       <string/>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="groupBoxCoordenadas">
+     <property name="geometry">
+      <rect>
+       <x>293</x>
+       <y>10</y>
+       <width>272</width>
+       <height>161</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Coordenadas Geográficas</string>
+     </property>
+     <widget class="QLabel" name="labelLatitude">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>252</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Latitude:</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEditLatitudeGraus">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>40</y>
+        <width>55</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+      <property name="placeholderText">
+       <string>23</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEditLatitudeMinutos">
+      <property name="geometry">
+       <rect>
+        <x>75</x>
+        <y>40</y>
+        <width>55</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEditLatitudeSegundos">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>40</y>
+        <width>45</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEditLatitudeSegundosDecimais">
+      <property name="geometry">
+       <rect>
+        <x>195</x>
+        <y>40</y>
+        <width>45</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="labelLatitudeGraus">
+      <property name="geometry">
+       <rect>
+        <x>65</x>
+        <y>40</y>
+        <width>10</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>°</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignHCenter|Qt::AlignTop</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="labelLatitudeMinutos">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>40</y>
+        <width>10</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>'</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignHCenter|Qt::AlignTop</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="labelLatitudeSegundosDecimais">
+      <property name="geometry">
+       <rect>
+        <x>185</x>
+        <y>40</y>
+        <width>10</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>,</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignBottom|Qt::AlignHCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="labelLatitudeSegundos">
+      <property name="geometry">
+       <rect>
+        <x>240</x>
+        <y>40</y>
+        <width>10</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>&quot;</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignHCenter|Qt::AlignTop</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="labelLatitudeSul">
+      <property name="geometry">
+       <rect>
+        <x>250</x>
+        <y>40</y>
+        <width>15</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>S</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignBottom|Qt::AlignHCenter</set>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEditLongitudeSegundosDecimais">
+      <property name="geometry">
+       <rect>
+        <x>195</x>
+        <y>110</y>
+        <width>45</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEditLongitudeSegundos">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>110</y>
+        <width>45</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="labelLongitude">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>90</y>
+        <width>252</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Longitude:</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEditLongitudeGraus">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>110</y>
+        <width>55</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+      <property name="placeholderText">
+       <string>45</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEditLongitudeMinutos">
+      <property name="geometry">
+       <rect>
+        <x>75</x>
+        <y>110</y>
+        <width>55</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="labelLongitudeMinutos">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>110</y>
+        <width>10</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>'</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignHCenter|Qt::AlignTop</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="labelLongitudeSegundosDecimais">
+      <property name="geometry">
+       <rect>
+        <x>185</x>
+        <y>110</y>
+        <width>10</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>,</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignBottom|Qt::AlignHCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="labelLongitudeSegundos">
+      <property name="geometry">
+       <rect>
+        <x>240</x>
+        <y>110</y>
+        <width>10</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>&quot;</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignHCenter|Qt::AlignTop</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="labelLongitudeGraus">
+      <property name="geometry">
+       <rect>
+        <x>65</x>
+        <y>110</y>
+        <width>10</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>°</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignHCenter|Qt::AlignTop</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="labelLongitudeOeste">
+      <property name="geometry">
+       <rect>
+        <x>250</x>
+        <y>110</y>
+        <width>15</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>O</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignBottom|Qt::AlignHCenter</set>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="groupBoxEndereco">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>180</y>
+       <width>555</width>
+       <height>70</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Endereço</string>
+     </property>
+     <widget class="QLineEdit" name="lineEditNomeLogradouro">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>20</y>
+        <width>370</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="placeholderText">
+       <string>Endereço</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEditNumeroPredial">
+      <property name="geometry">
+       <rect>
+        <x>500</x>
+        <y>20</y>
+        <width>45</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+      <property name="placeholderText">
+       <string>Nº</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEditCEP">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>100</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="placeholderText">
+       <string>CEP</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QCommandLinkButton" name="commandLinkButtonAvancarProjeto">
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>255</y>
+       <width>100</width>
+       <height>40</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Segoe UI</family>
+       <pointsize>10</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="layoutDirection">
+      <enum>Qt::LeftToRight</enum>
+     </property>
+     <property name="text">
+      <string>AVANÇAR</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>img/icone_avancar.png</normaloff>img/icone_avancar.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QCommandLinkButton" name="commandLinkButtonVoltarProcesso">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>255</y>
+       <width>100</width>
+       <height>40</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Segoe UI</family>
+       <pointsize>10</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="layoutDirection">
+      <enum>Qt::LeftToRight</enum>
+     </property>
+     <property name="text">
+      <string>VOLTAR</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>img/icone_voltar.png</normaloff>img/icone_voltar.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QCommandLinkButton" name="commandLinkButtonCancelar_2">
+     <property name="geometry">
+      <rect>
+       <x>465</x>
+       <y>255</y>
+       <width>100</width>
+       <height>40</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Segoe UI</family>
+       <pointsize>10</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="layoutDirection">
+      <enum>Qt::LeftToRight</enum>
+     </property>
+     <property name="text">
+      <string>SAIR</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>img/x.png</normaloff>img/x.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+     <property name="autoRepeatDelay">
+      <number>0</number>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="projeto">
+    <attribute name="title">
+     <string>Projeto</string>
+    </attribute>
+    <widget class="QGroupBox" name="groupObjeto">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>555</width>
+       <height>60</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Objeto</string>
+     </property>
+     <widget class="QCheckBox" name="checkBoxConstrucao">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>25</y>
+        <width>120</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>10</pointsize>
+        <underline>false</underline>
+       </font>
+      </property>
+      <property name="autoFillBackground">
+       <bool>true</bool>
+      </property>
+      <property name="text">
+       <string>Construção</string>
+      </property>
+      <property name="tristate">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBoxAmpliacao">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>25</y>
+        <width>120</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="autoFillBackground">
+       <bool>true</bool>
+      </property>
+      <property name="text">
+       <string>Ampliação</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBoxTransformacao">
+      <property name="geometry">
+       <rect>
+        <x>270</x>
+        <y>25</y>
+        <width>132</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="autoFillBackground">
+       <bool>true</bool>
+      </property>
+      <property name="text">
+       <string>Transformação</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBoxRegularizacao">
+      <property name="geometry">
+       <rect>
+        <x>412</x>
+        <y>25</y>
+        <width>132</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="autoFillBackground">
+       <bool>true</bool>
+      </property>
+      <property name="text">
+       <string>Regularização</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="groupBoxAtividade">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>80</y>
+       <width>555</width>
+       <height>90</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Atividade/Zoneamento</string>
+     </property>
+     <widget class="QComboBox" name="comboBoxAtividade">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>40</y>
+        <width>120</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>Selecione</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>R</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>CS</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>I1-A</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>CS1-A (NPGT)</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>RHS</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Outro</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLabel" name="labelAtividadePrincipal">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>120</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Atividade:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="labelZoneamento">
+      <property name="geometry">
+       <rect>
+        <x>270</x>
+        <y>20</y>
+        <width>132</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Zoneamento:</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="comboBoxZoneamento">
+      <property name="geometry">
+       <rect>
+        <x>270</x>
+        <y>40</y>
+        <width>132</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>Zona adotada</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>CMETRO-ED</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>CMETRO-CT</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>CM</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>CL</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>ZM1</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>ZM2</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>ZM3</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>ZM4</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>ZM5</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>ZR</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>ZPA1</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>ZPA2</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>ZPE1</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>ZPE2</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>ZUD</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>ZUPI1</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>ZUPI2</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>CR1</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>CR2</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>CR3</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>CR4</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>CR5</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLabel" name="labelAtividadeSecundaria">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>20</y>
+        <width>120</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Atividade (misto):</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="comboBoxAtividade_2">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>40</y>
+        <width>120</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>Selecione</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>R</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>CS</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>I1-A</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>CS1-A (NPGT)</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>RHS</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Outro</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QComboBox" name="comboBoxZoneamento_2">
+      <property name="geometry">
+       <rect>
+        <x>412</x>
+        <y>40</y>
+        <width>132</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>Outra zona</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>CMETRO-ED</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>CMETRO-CT</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>CM</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>CL</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>ZM1</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>ZM2</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>ZM3</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>ZM4</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>ZM5</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>ZR</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>ZPA1</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>ZPA2</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>ZPE1</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>ZPE2</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>ZUD</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>ZUPI1</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>ZUPI2</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>CR1</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>CR2</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>CR3</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>CR4</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>CR5</string>
+       </property>
+      </item>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="groupBoxCotasAltitude">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>180</y>
+       <width>555</width>
+       <height>70</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Cotas de altitude</string>
+     </property>
+     <widget class="QLabel" name="labelCotaMaisBaixa">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>120</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="text">
+       <string>Nível do ponto mais baixo da edificação:</string>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="labelCotaMaisAlta">
+      <property name="geometry">
+       <rect>
+        <x>270</x>
+        <y>20</y>
+        <width>132</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Nível do ponto mais alto da edificação:</string>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEditCotaMaisBaixa">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>20</y>
+        <width>40</width>
+        <height>40</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEditCotaMaisBaixaDecimais">
+      <property name="geometry">
+       <rect>
+        <x>190</x>
+        <y>20</y>
+        <width>40</width>
+        <height>40</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEditCotaMaisAlta">
+      <property name="geometry">
+       <rect>
+        <x>412</x>
+        <y>20</y>
+        <width>40</width>
+        <height>40</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEditCotaMaisAltaDecimais">
+      <property name="geometry">
+       <rect>
+        <x>462</x>
+        <y>20</y>
+        <width>40</width>
+        <height>40</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="labelCotaMaisBaixaSeparador">
+      <property name="geometry">
+       <rect>
+        <x>180</x>
+        <y>20</y>
+        <width>10</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>,</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignBottom|Qt::AlignHCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="labelCotaMaisAltaSeparador">
+      <property name="geometry">
+       <rect>
+        <x>452</x>
+        <y>20</y>
+        <width>10</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>,</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignBottom|Qt::AlignHCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="labelCotaMaisBaixaUnidade">
+      <property name="geometry">
+       <rect>
+        <x>230</x>
+        <y>20</y>
+        <width>20</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>m</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignBottom|Qt::AlignHCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="labelCotaMaisAltaUnidade">
+      <property name="geometry">
+       <rect>
+        <x>502</x>
+        <y>20</y>
+        <width>20</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>m</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignBottom|Qt::AlignHCenter</set>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QCommandLinkButton" name="commandLinkButtonVoltarLocal">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>255</y>
+       <width>100</width>
+       <height>40</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Segoe UI</family>
+       <pointsize>10</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="layoutDirection">
+      <enum>Qt::LeftToRight</enum>
+     </property>
+     <property name="text">
+      <string>VOLTAR</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>img/icone_voltar.png</normaloff>img/icone_voltar.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QCommandLinkButton" name="commandLinkButtonCadastrar">
+     <property name="geometry">
+      <rect>
+       <x>230</x>
+       <y>255</y>
+       <width>100</width>
+       <height>40</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Segoe UI</family>
+       <pointsize>10</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="layoutDirection">
+      <enum>Qt::LeftToRight</enum>
+     </property>
+     <property name="text">
+      <string>SALVAR</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>img/icone_pin.png</normaloff>img/icone_pin.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QCommandLinkButton" name="commandLinkButtonCancelar_3">
+     <property name="geometry">
+      <rect>
+       <x>465</x>
+       <y>255</y>
+       <width>100</width>
+       <height>40</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Segoe UI</family>
+       <pointsize>10</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="layoutDirection">
+      <enum>Qt::LeftToRight</enum>
+     </property>
+     <property name="text">
+      <string>SAIR</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>img/x.png</normaloff>img/x.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+     <property name="autoRepeatDelay">
+      <number>0</number>
+     </property>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QLabel" name="labelBrasao">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>100</width>
+     <height>100</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap>img/brasao.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelCabecalhoTitulo">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>20</y>
+     <width>470</width>
+     <height>40</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>16</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>PREFEITURA DE SÃO JOSÉ DOS CAMPOS</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelCabecalhoSubtitulo">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>60</y>
+     <width>470</width>
+     <height>40</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>12</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>SECRETARIA DE URBANISMO E SUSTENTABILIDADE
+DEPARTAMENTO DE GESTÃO DE OBRAS PARTICULARES</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelTituloJanela">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>110</y>
+     <width>580</width>
+     <height>40</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>12</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>GERENCIADOR DE ALVARÁS RESPONSÁVEIS AUTOMÁTICOS - ARA</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+ </widget>
+ <tabstops>
+  <tabstop>tabWidgetCadastrar</tabstop>
+  <tabstop>lineEditProcesso</tabstop>
+  <tabstop>spinBoxAno</tabstop>
+  <tabstop>comboBoxTipoProcesso</tabstop>
+  <tabstop>dateEditAbertura</tabstop>
+  <tabstop>comboBoxTipoAlvara</tabstop>
+  <tabstop>lineEditRequerenteCPF</tabstop>
+  <tabstop>lineEditRequerenteNome</tabstop>
+  <tabstop>commandLinkButtonAvancarLocal</tabstop>
+  <tabstop>commandLinkButtonCancelar</tabstop>
+  <tabstop>lineEditSetor</tabstop>
+  <tabstop>lineEditQuadra</tabstop>
+  <tabstop>lineEditLote</tabstop>
+  <tabstop>lineEditUnidade</tabstop>
+  <tabstop>lineEditInscricaoImobiliaria</tabstop>
+  <tabstop>lineEditLatitudeGraus</tabstop>
+  <tabstop>lineEditLatitudeMinutos</tabstop>
+  <tabstop>lineEditLatitudeSegundos</tabstop>
+  <tabstop>lineEditLatitudeSegundosDecimais</tabstop>
+  <tabstop>lineEditLongitudeGraus</tabstop>
+  <tabstop>lineEditLongitudeMinutos</tabstop>
+  <tabstop>lineEditLongitudeSegundos</tabstop>
+  <tabstop>lineEditLongitudeSegundosDecimais</tabstop>
+  <tabstop>lineEditCEP</tabstop>
+  <tabstop>lineEditNomeLogradouro</tabstop>
+  <tabstop>lineEditNumeroPredial</tabstop>
+  <tabstop>commandLinkButtonVoltarProcesso</tabstop>
+  <tabstop>commandLinkButtonAvancarProjeto</tabstop>
+  <tabstop>commandLinkButtonCancelar_2</tabstop>
+  <tabstop>checkBoxConstrucao</tabstop>
+  <tabstop>checkBoxAmpliacao</tabstop>
+  <tabstop>checkBoxTransformacao</tabstop>
+  <tabstop>checkBoxRegularizacao</tabstop>
+  <tabstop>comboBoxAtividade</tabstop>
+  <tabstop>comboBoxAtividade_2</tabstop>
+  <tabstop>comboBoxZoneamento</tabstop>
+  <tabstop>comboBoxZoneamento_2</tabstop>
+  <tabstop>lineEditCotaMaisBaixa</tabstop>
+  <tabstop>lineEditCotaMaisBaixaDecimais</tabstop>
+  <tabstop>lineEditCotaMaisAlta</tabstop>
+  <tabstop>lineEditCotaMaisAltaDecimais</tabstop>
+  <tabstop>commandLinkButtonVoltarLocal</tabstop>
+  <tabstop>commandLinkButtonCadastrar</tabstop>
+  <tabstop>commandLinkButtonCancelar_3</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>
