@@ -433,7 +433,7 @@
       <number>2025</number>
      </property>
     </widget>
-    <widget class="QCommandLinkButton" name="commandLinkButtonCancelar">
+    <widget class="QCommandLinkButton" name="commandLinkButtonCancelarProcesso">
      <property name="geometry">
       <rect>
        <x>465</x>
@@ -475,189 +475,13 @@
     <attribute name="title">
      <string>Local</string>
     </attribute>
-    <widget class="QGroupBox" name="groupBoxInscricaoImobiliaria">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>10</y>
-       <width>273</width>
-       <height>161</height>
-      </rect>
-     </property>
-     <property name="title">
-      <string>Inscrição Imobiliária</string>
-     </property>
-     <widget class="QLabel" name="labelSetor">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>20</y>
-        <width>55</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Setor:</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="labelQuadra">
-      <property name="geometry">
-       <rect>
-        <x>75</x>
-        <y>20</y>
-        <width>55</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Quadra:</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="labelLote">
-      <property name="geometry">
-       <rect>
-        <x>140</x>
-        <y>20</y>
-        <width>55</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Lote:</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="labelUnidade">
-      <property name="geometry">
-       <rect>
-        <x>205</x>
-        <y>20</y>
-        <width>55</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Unidade:</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="labelInscricaoImobiliaria">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>90</y>
-        <width>240</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Inscrição Imobiliária:</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="lineEditSetor">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>40</y>
-        <width>55</width>
-        <height>40</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="frame">
-       <bool>true</bool>
-      </property>
-      <property name="echoMode">
-       <enum>QLineEdit::Normal</enum>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-      <property name="dragEnabled">
-       <bool>false</bool>
-      </property>
-      <property name="readOnly">
-       <bool>false</bool>
-      </property>
-      <property name="placeholderText">
-       <string>00</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="lineEditQuadra">
-      <property name="geometry">
-       <rect>
-        <x>75</x>
-        <y>40</y>
-        <width>55</width>
-        <height>40</height>
-       </rect>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-      <property name="placeholderText">
-       <string>0000</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="lineEditLote">
-      <property name="geometry">
-       <rect>
-        <x>140</x>
-        <y>40</y>
-        <width>55</width>
-        <height>40</height>
-       </rect>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-      <property name="placeholderText">
-       <string>0000</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="lineEditUnidade">
-      <property name="geometry">
-       <rect>
-        <x>205</x>
-        <y>40</y>
-        <width>55</width>
-        <height>40</height>
-       </rect>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-      <property name="placeholderText">
-       <string>0000</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="lineEditInscricaoImobiliaria">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>110</y>
-        <width>250</width>
-        <height>40</height>
-       </rect>
-      </property>
-      <property name="inputMask">
-       <string>00.0000.0000.0000;_</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-      </property>
-      <property name="placeholderText">
-       <string/>
-      </property>
-     </widget>
-    </widget>
     <widget class="QGroupBox" name="groupBoxCoordenadas">
      <property name="geometry">
       <rect>
        <x>293</x>
        <y>10</y>
        <width>272</width>
-       <height>161</height>
+       <height>151</height>
       </rect>
      </property>
      <property name="title">
@@ -685,6 +509,9 @@
         <height>40</height>
        </rect>
       </property>
+      <property name="text">
+       <string>23</string>
+      </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
       </property>
@@ -704,6 +531,9 @@
       <property name="alignment">
        <set>Qt::AlignCenter</set>
       </property>
+      <property name="placeholderText">
+       <string>00</string>
+      </property>
      </widget>
      <widget class="QLineEdit" name="lineEditLatitudeSegundos">
       <property name="geometry">
@@ -717,6 +547,9 @@
       <property name="alignment">
        <set>Qt::AlignCenter</set>
       </property>
+      <property name="placeholderText">
+       <string>00</string>
+      </property>
      </widget>
      <widget class="QLineEdit" name="lineEditLatitudeSegundosDecimais">
       <property name="geometry">
@@ -726,6 +559,9 @@
         <width>45</width>
         <height>40</height>
        </rect>
+      </property>
+      <property name="text">
+       <string>00</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -845,10 +681,13 @@
       <property name="geometry">
        <rect>
         <x>195</x>
-        <y>110</y>
+        <y>100</y>
         <width>45</width>
         <height>40</height>
        </rect>
+      </property>
+      <property name="text">
+       <string>00</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -858,7 +697,7 @@
       <property name="geometry">
        <rect>
         <x>140</x>
-        <y>110</y>
+        <y>100</y>
         <width>45</width>
         <height>40</height>
        </rect>
@@ -866,12 +705,15 @@
       <property name="alignment">
        <set>Qt::AlignCenter</set>
       </property>
+      <property name="placeholderText">
+       <string>00</string>
+      </property>
      </widget>
      <widget class="QLabel" name="labelLongitude">
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>90</y>
+        <y>80</y>
         <width>252</width>
         <height>20</height>
        </rect>
@@ -884,10 +726,13 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>110</y>
+        <y>100</y>
         <width>55</width>
         <height>40</height>
        </rect>
+      </property>
+      <property name="text">
+       <string>45</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -900,7 +745,7 @@
       <property name="geometry">
        <rect>
         <x>75</x>
-        <y>110</y>
+        <y>100</y>
         <width>55</width>
         <height>40</height>
        </rect>
@@ -908,12 +753,15 @@
       <property name="alignment">
        <set>Qt::AlignCenter</set>
       </property>
+      <property name="placeholderText">
+       <string>00</string>
+      </property>
      </widget>
      <widget class="QLabel" name="labelLongitudeMinutos">
       <property name="geometry">
        <rect>
         <x>130</x>
-        <y>110</y>
+        <y>100</y>
         <width>10</width>
         <height>40</height>
        </rect>
@@ -935,7 +783,7 @@
       <property name="geometry">
        <rect>
         <x>185</x>
-        <y>110</y>
+        <y>100</y>
         <width>10</width>
         <height>40</height>
        </rect>
@@ -957,7 +805,7 @@
       <property name="geometry">
        <rect>
         <x>240</x>
-        <y>110</y>
+        <y>100</y>
         <width>10</width>
         <height>40</height>
        </rect>
@@ -979,7 +827,7 @@
       <property name="geometry">
        <rect>
         <x>65</x>
-        <y>110</y>
+        <y>100</y>
         <width>10</width>
         <height>40</height>
        </rect>
@@ -1001,7 +849,7 @@
       <property name="geometry">
        <rect>
         <x>250</x>
-        <y>110</y>
+        <y>100</y>
         <width>15</width>
         <height>40</height>
        </rect>
@@ -1024,9 +872,9 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>180</y>
+       <y>170</y>
        <width>555</width>
-       <height>70</height>
+       <height>80</height>
       </rect>
      </property>
      <property name="title">
@@ -1036,7 +884,7 @@
       <property name="geometry">
        <rect>
         <x>120</x>
-        <y>20</y>
+        <y>30</y>
         <width>370</width>
         <height>40</height>
        </rect>
@@ -1049,7 +897,7 @@
       <property name="geometry">
        <rect>
         <x>500</x>
-        <y>20</y>
+        <y>30</y>
         <width>45</width>
         <height>40</height>
        </rect>
@@ -1065,10 +913,13 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>20</y>
+        <y>30</y>
         <width>100</width>
         <height>40</height>
        </rect>
+      </property>
+      <property name="inputMask">
+       <string>00000-000;_</string>
       </property>
       <property name="placeholderText">
        <string>CEP</string>
@@ -1143,7 +994,7 @@
       </size>
      </property>
     </widget>
-    <widget class="QCommandLinkButton" name="commandLinkButtonCancelar_2">
+    <widget class="QCommandLinkButton" name="commandLinkButtonCancelarLocal">
      <property name="geometry">
       <rect>
        <x>465</x>
@@ -1180,6 +1031,185 @@
       <number>0</number>
      </property>
     </widget>
+    <widget class="QGroupBox" name="groupBoxInscricaoImobiliaria">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>273</width>
+       <height>151</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Inscrição Imobiliária</string>
+     </property>
+     <widget class="QLabel" name="labelSetor">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>55</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Setor:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="labelQuadra">
+      <property name="geometry">
+       <rect>
+        <x>75</x>
+        <y>20</y>
+        <width>55</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Quadra:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="labelLote">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>20</y>
+        <width>55</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Lote:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="labelUnidade">
+      <property name="geometry">
+       <rect>
+        <x>205</x>
+        <y>20</y>
+        <width>55</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Unidade:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="labelInscricaoImobiliaria">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>80</y>
+        <width>240</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Inscrição Imobiliária:</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEditSetor">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>40</y>
+        <width>55</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="frame">
+       <bool>true</bool>
+      </property>
+      <property name="echoMode">
+       <enum>QLineEdit::Normal</enum>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+      <property name="dragEnabled">
+       <bool>false</bool>
+      </property>
+      <property name="readOnly">
+       <bool>false</bool>
+      </property>
+      <property name="placeholderText">
+       <string>00</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEditQuadra">
+      <property name="geometry">
+       <rect>
+        <x>75</x>
+        <y>40</y>
+        <width>55</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+      <property name="placeholderText">
+       <string>0000</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEditLote">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>40</y>
+        <width>55</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+      <property name="placeholderText">
+       <string>0000</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEditUnidade">
+      <property name="geometry">
+       <rect>
+        <x>205</x>
+        <y>40</y>
+        <width>55</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>0000</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+      <property name="placeholderText">
+       <string>0000</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEditInscricaoImobiliaria">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>100</y>
+        <width>250</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="inputMask">
+       <string>00.0000.0000.0000;_</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+      </property>
+      <property name="placeholderText">
+       <string/>
+      </property>
+     </widget>
+    </widget>
    </widget>
    <widget class="QWidget" name="projeto">
     <attribute name="title">
@@ -1191,7 +1221,7 @@
        <x>10</x>
        <y>10</y>
        <width>555</width>
-       <height>60</height>
+       <height>50</height>
       </rect>
      </property>
      <property name="title">
@@ -1276,7 +1306,7 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>80</y>
+       <y>70</y>
        <width>555</width>
        <height>90</height>
       </rect>
@@ -1355,7 +1385,7 @@
        <string>Zoneamento:</string>
       </property>
      </widget>
-     <widget class="QComboBox" name="comboBoxZoneamento">
+     <widget class="QComboBox" name="comboBoxZoneamentoAdotado">
       <property name="geometry">
        <rect>
         <x>270</x>
@@ -1493,7 +1523,7 @@
        <string>Atividade (misto):</string>
       </property>
      </widget>
-     <widget class="QComboBox" name="comboBoxAtividade_2">
+     <widget class="QComboBox" name="comboBoxAtividadeMista">
       <property name="geometry">
        <rect>
         <x>140</x>
@@ -1538,7 +1568,7 @@
        </property>
       </item>
      </widget>
-     <widget class="QComboBox" name="comboBoxZoneamento_2">
+     <widget class="QComboBox" name="comboBoxZoneamentoSecundario">
       <property name="geometry">
        <rect>
         <x>412</x>
@@ -1668,9 +1698,9 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>180</y>
+       <y>170</y>
        <width>555</width>
-       <height>70</height>
+       <height>80</height>
       </rect>
      </property>
      <property name="title">
@@ -1680,7 +1710,7 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>20</y>
+        <y>30</y>
         <width>120</width>
         <height>40</height>
        </rect>
@@ -1699,7 +1729,7 @@
       <property name="geometry">
        <rect>
         <x>270</x>
-        <y>20</y>
+        <y>30</y>
         <width>132</width>
         <height>40</height>
        </rect>
@@ -1715,47 +1745,65 @@
       <property name="geometry">
        <rect>
         <x>140</x>
-        <y>20</y>
+        <y>30</y>
         <width>40</width>
         <height>40</height>
        </rect>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
      <widget class="QLineEdit" name="lineEditCotaMaisBaixaDecimais">
       <property name="geometry">
        <rect>
         <x>190</x>
-        <y>20</y>
+        <y>30</y>
         <width>40</width>
         <height>40</height>
        </rect>
+      </property>
+      <property name="text">
+       <string>00</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
      <widget class="QLineEdit" name="lineEditCotaMaisAlta">
       <property name="geometry">
        <rect>
         <x>412</x>
-        <y>20</y>
+        <y>30</y>
         <width>40</width>
         <height>40</height>
        </rect>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
      <widget class="QLineEdit" name="lineEditCotaMaisAltaDecimais">
       <property name="geometry">
        <rect>
         <x>462</x>
-        <y>20</y>
+        <y>30</y>
         <width>40</width>
         <height>40</height>
        </rect>
+      </property>
+      <property name="text">
+       <string>00</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
      <widget class="QLabel" name="labelCotaMaisBaixaSeparador">
       <property name="geometry">
        <rect>
         <x>180</x>
-        <y>20</y>
+        <y>30</y>
         <width>10</width>
         <height>40</height>
        </rect>
@@ -1771,7 +1819,7 @@
       <property name="geometry">
        <rect>
         <x>452</x>
-        <y>20</y>
+        <y>30</y>
         <width>10</width>
         <height>40</height>
        </rect>
@@ -1787,7 +1835,7 @@
       <property name="geometry">
        <rect>
         <x>230</x>
-        <y>20</y>
+        <y>30</y>
         <width>20</width>
         <height>40</height>
        </rect>
@@ -1803,7 +1851,7 @@
       <property name="geometry">
        <rect>
         <x>502</x>
-        <y>20</y>
+        <y>30</y>
         <width>20</width>
         <height>40</height>
        </rect>
@@ -1884,7 +1932,7 @@
       </size>
      </property>
     </widget>
-    <widget class="QCommandLinkButton" name="commandLinkButtonCancelar_3">
+    <widget class="QCommandLinkButton" name="commandLinkButtonCancelarProjeto">
      <property name="geometry">
       <rect>
        <x>465</x>
@@ -2026,7 +2074,7 @@ DEPARTAMENTO DE GESTÃO DE OBRAS PARTICULARES</string>
   <tabstop>lineEditRequerenteCPF</tabstop>
   <tabstop>lineEditRequerenteNome</tabstop>
   <tabstop>commandLinkButtonAvancarLocal</tabstop>
-  <tabstop>commandLinkButtonCancelar</tabstop>
+  <tabstop>commandLinkButtonCancelarProcesso</tabstop>
   <tabstop>lineEditSetor</tabstop>
   <tabstop>lineEditQuadra</tabstop>
   <tabstop>lineEditLote</tabstop>
@@ -2043,24 +2091,24 @@ DEPARTAMENTO DE GESTÃO DE OBRAS PARTICULARES</string>
   <tabstop>lineEditCEP</tabstop>
   <tabstop>lineEditNomeLogradouro</tabstop>
   <tabstop>lineEditNumeroPredial</tabstop>
-  <tabstop>commandLinkButtonVoltarProcesso</tabstop>
   <tabstop>commandLinkButtonAvancarProjeto</tabstop>
-  <tabstop>commandLinkButtonCancelar_2</tabstop>
+  <tabstop>commandLinkButtonVoltarProcesso</tabstop>
+  <tabstop>commandLinkButtonCancelarLocal</tabstop>
   <tabstop>checkBoxConstrucao</tabstop>
   <tabstop>checkBoxAmpliacao</tabstop>
   <tabstop>checkBoxTransformacao</tabstop>
   <tabstop>checkBoxRegularizacao</tabstop>
   <tabstop>comboBoxAtividade</tabstop>
-  <tabstop>comboBoxAtividade_2</tabstop>
-  <tabstop>comboBoxZoneamento</tabstop>
-  <tabstop>comboBoxZoneamento_2</tabstop>
+  <tabstop>comboBoxAtividadeMista</tabstop>
+  <tabstop>comboBoxZoneamentoAdotado</tabstop>
+  <tabstop>comboBoxZoneamentoSecundario</tabstop>
   <tabstop>lineEditCotaMaisBaixa</tabstop>
   <tabstop>lineEditCotaMaisBaixaDecimais</tabstop>
   <tabstop>lineEditCotaMaisAlta</tabstop>
   <tabstop>lineEditCotaMaisAltaDecimais</tabstop>
-  <tabstop>commandLinkButtonVoltarLocal</tabstop>
   <tabstop>commandLinkButtonCadastrar</tabstop>
-  <tabstop>commandLinkButtonCancelar_3</tabstop>
+  <tabstop>commandLinkButtonVoltarLocal</tabstop>
+  <tabstop>commandLinkButtonCancelarProjeto</tabstop>
  </tabstops>
  <resources/>
  <connections/>

@@ -189,7 +189,8 @@ class GerenciadorARA:
             "processos_ara",
             "requerentes",
             "dados_localizacao",
-            "dados_projeto"
+            "dados_projeto",
+            "LOTES"
         }
 
         nomes_carregados = {layer.name() for layer in QgsProject.instance().mapLayers().values()}
