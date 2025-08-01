@@ -1,5 +1,11 @@
 <RCC>
-    <qresource prefix="/plugins/ara_manager" >
-        <file>icon.png</file>
+    <qresource prefix="/">
+        <file>img/brasao.png</file>
+        <file>img/e_proc_azul.png</file>
+        <file>img/e_proc_laranja.png</file>
+        <file>img/icone_avancar.png</file>
+        <file>img/icone_pin.png</file>
+        <file>img/icone_voltar.png</file>
+        <file>img/x.png</file>
     </qresource>
 </RCC>

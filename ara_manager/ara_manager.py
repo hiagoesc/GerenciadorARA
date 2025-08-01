@@ -29,7 +29,7 @@ from qgis.core import QgsProject
 # Initialize Qt resources from file resources.py
 from .resources import *
 # Import the code for the dialog
-from .ara_manager_dialog import GerenciadorARADialog
+from .ara_manager_dialog_base import TelaPrincipal
 
 from .utils import buscar_requerente_por_cpf
 
@@ -212,11 +212,10 @@ class GerenciadorARA:
 
         # Create the dialog with elements (after translation) and keep reference
         # Only create GUI ONCE in callback, so that it will only load when the plugin is started
-        if self.first_start == True:
+        if self.first_start:
             self.first_start = False
-            self.dlg = GerenciadorARADialog()
+            self.dlg = TelaPrincipal()
 
-        # show the dialog
         self.dlg.show()
         # Run the dialog event loop
         result = self.dlg.exec_()
