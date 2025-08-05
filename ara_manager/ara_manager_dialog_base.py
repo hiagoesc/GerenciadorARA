@@ -25,6 +25,7 @@
 from qgis.PyQt import QtWidgets
 from .ara_manager_dialog_base_ui import Ui_GerenciadorARADialogBase
 from .ara_manager_dialog_cadastrar import CadastroARADialog
+from . import resources
 
 class TelaPrincipal(QtWidgets.QDialog, Ui_GerenciadorARADialogBase):
     def __init__(self, parent=None):

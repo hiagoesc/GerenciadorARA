@@ -48,7 +48,7 @@ class Ui_GerenciadorARADialogBase(object):
         self.labelBrasao = QtWidgets.QLabel(GerenciadorARADialogBase)
         self.labelBrasao.setGeometry(QtCore.QRect(10, 10, 100, 100))
         self.labelBrasao.setText("")
-        self.labelBrasao.setPixmap(QtGui.QPixmap("img/brasao.png"))
+        self.labelBrasao.setPixmap(QtGui.QPixmap(":/img/brasao.png"))
         self.labelBrasao.setScaledContents(True)
         self.labelBrasao.setObjectName("labelBrasao")
         self.labelCabecalhoTitulo = QtWidgets.QLabel(GerenciadorARADialogBase)

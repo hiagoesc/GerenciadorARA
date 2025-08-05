@@ -7,5 +7,6 @@
         <file>img/icone_pin.png</file>
         <file>img/icone_voltar.png</file>
         <file>img/x.png</file>
+        <file>img/icon.png</file>
     </qresource>
 </RCC>

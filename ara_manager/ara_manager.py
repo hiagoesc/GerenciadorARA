@@ -30,7 +30,7 @@ from qgis.core import QgsProject
 from .resources import *
 # Import the code for the dialog
 from .ara_manager_dialog_base import TelaPrincipal
-
+from . import resources
 from .utils import buscar_requerente_por_cpf
 
 import os.path
@@ -164,7 +164,7 @@ class GerenciadorARA:
     def initGui(self):
         """Create the menu entries and toolbar icons inside the QGIS GUI."""
 
-        icon_path = ':/plugins/ara_manager/icon.png'
+        icon_path = ':/img/icon.png'
         self.add_action(
             icon_path,
             text=self.tr(u'Gerenciador ARA'),
