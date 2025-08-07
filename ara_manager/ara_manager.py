@@ -27,10 +27,11 @@ from qgis.PyQt.QtWidgets import QAction, QMessageBox
 from qgis.core import QgsProject
 
 # Initialize Qt resources from file resources.py
-from .resources import *
+from . import resources
+
 # Import the code for the dialog
 from .ara_manager_dialog_base import TelaPrincipal
-from . import resources
+
 from .utils import buscar_requerente_por_cpf
 
 import os.path

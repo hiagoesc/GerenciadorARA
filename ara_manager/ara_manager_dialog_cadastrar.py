@@ -49,6 +49,10 @@ class CadastroARADialog(QtWidgets.QDialog, Ui_GerenciadorARADialogBase):
         # Atualiza o campo de data    
         self.dateEditAbertura.setDate(QDate.currentDate())
 
+        self.radioButtonProjetoEngCivil.toggled.connect(self.atualizar_label_registro)
+        self.radioButtonProjetoArquitetura.toggled.connect(self.atualizar_label_registro)
+        self.radioButtonProjetoEdificacoes.toggled.connect(self.atualizar_label_registro)
+
         # Conecta sinais
         self.lineEditRequerenteCPF.textChanged.connect(self.ao_digitar_cpf)
 
@@ -69,20 +73,67 @@ class CadastroARADialog(QtWidgets.QDialog, Ui_GerenciadorARADialogBase):
 
         self.commandLinkButtonCadastrar.clicked.connect(self.salvar_dados_processo)
 
-        # Botões de navegação entre abas
+        # Botões de navegação entre abas e de cancelamento
         self.commandLinkButtonAvancarLocal.clicked.connect(self.ir_para_aba_local)
+        self.commandLinkButtonCancelarProcesso.clicked.connect(self.close)
+
         self.commandLinkButtonVoltarProcesso.clicked.connect(self.ir_para_aba_processo)
         self.commandLinkButtonAvancarProjeto.clicked.connect(self.ir_para_aba_projeto)
-        self.commandLinkButtonVoltarLocal.clicked.connect(self.ir_para_aba_local)
-
-        # Botões de cancelamento
-        self.commandLinkButtonCancelarProcesso.clicked.connect(self.close)
         self.commandLinkButtonCancelarLocal.clicked.connect(self.close)
+
+        self.commandLinkButtonVoltarLocal.clicked.connect(self.ir_para_aba_local)
+        self.commandLinkButtonAvancarTecnico.clicked.connect(self.ir_para_aba_tecnico)
         self.commandLinkButtonCancelarProjeto.clicked.connect(self.close)
+
+        self.commandLinkButtonVoltarProjeto.clicked.connect(self.ir_para_aba_projeto)
+        self.commandLinkButtonCancelarTecnico.clicked.connect(self.close)
+
+
+        self.checkBoxExecucao.stateChanged.connect(self.preencher_dados_responsavel)
+
 
     def closeEvent(self, event):
         self.limpar_campos()
         event.accept()  # Permite que a janela seja fechada normalmente
+
+    def atualizar_label_registro(self):
+        if self.radioButtonProjetoEngCivil.isChecked():
+            self.labelProjetoRegistro.setText("CREA:")
+            self.lineEditProjetoRegistro.clear()
+            self.lineEditProjetoRegistro.setInputMask("0000000000;_") 
+        elif self.radioButtonProjetoArquitetura.isChecked():
+            self.labelProjetoRegistro.setText("CAU:")
+            self.lineEditProjetoRegistro.clear()
+            self.lineEditProjetoRegistro.setInputMask("A000000-0;_")
+            self.lineEditProjetoRegistro.setText("A")
+            self.lineEditProjetoRegistro.setCursorPosition(1)
+        elif self.radioButtonProjetoEdificacoes.isChecked():
+            self.labelProjetoRegistro.setText("CRT:")
+            self.lineEditProjetoRegistro.clear()
+            self.lineEditProjetoRegistro.setInputMask("000.000.000-00;_") 
+        else:
+            self.labelProjetoRegistro.setText("Registro:")
+            self.lineEditProjetoRegistro.clear()
+            self.lineEditProjetoRegistro.setInputMask("")
+
+        if self.radioButtonExecucaoEngCivil.isChecked():
+            self.labelExecucaoRegistro.setText("CREA:")
+            self.lineEditExecucaoRegistro.clear()
+            self.lineEditExecucaoRegistro.setInputMask("0000000000;_") 
+        elif self.radioButtonExecucaoArquitetura.isChecked():
+            self.labelExecucaoRegistro.setText("CAU:")
+            self.lineEditExecucaoRegistro.clear()
+            self.lineEditExecucaoRegistro.setInputMask("A000000-0;_")
+            self.lineEditExecucaoRegistro.setText("A")
+            self.lineEditExecucaoRegistro.setCursorPosition(1)
+        elif self.radioButtonExecucaoEdificacoes.isChecked():
+            self.labelExecucaoRegistro.setText("CRT:")
+            self.lineEditExecucaoRegistro.clear()
+            self.lineEditExecucaoRegistro.setInputMask("000.000.000-00;_") 
+        else:
+            self.labelExecucaoRegistro.setText("Registro:")
+            self.lineEditExecucaoRegistro.clear()
+            self.lineEditExecucaoRegistro.setInputMask("")
 
     def ao_digitar_cpf(self):
         texto = self.lineEditRequerenteCPF.text()
@@ -147,6 +198,63 @@ class CadastroARADialog(QtWidgets.QDialog, Ui_GerenciadorARADialogBase):
 
     def ir_para_aba_projeto(self):
         self.tabWidgetCadastrar.setCurrentIndex(2)
+
+
+    def ir_para_aba_tecnico(self):
+        self.tabWidgetCadastrar.setCurrentIndex(3)
+
+
+    def preencher_dados_responsavel(self):
+        if self.checkBoxExecucao.isChecked():
+
+            # Copiar o tipo de responsabilidade técnica
+            if self.radioButtonProjetoEngCivil.isChecked():
+                self.radioButtonExecucaoEngCivil.setChecked(True)
+            elif self.radioButtonProjetoArquitetura.isChecked():
+                self.radioButtonExecucaoArquitetura.setChecked(True)
+            elif self.radioButtonProjetoEdificacoes.isChecked():
+                self.radioButtonExecucaoEdificacoes.setChecked(True)
+
+            # Copiar o gênero
+            if self.radioButtonProjetoFeminino.isChecked():
+                self.radioButtonExecucaoFeminino.setChecked(True)
+            elif self.radioButtonProjetoMasculino.isChecked():
+                self.radioButtonExecucaoMasculino.setChecked(True)
+
+            # Copiar os campos de texto
+            self.lineEditExecucaoRegistro.setText(self.lineEditProjetoRegistro.text())
+            self.lineEditExecucaoInscricao.setText(self.lineEditProjetoInscricao.text())
+            self.lineEditExecucaoNome.setText(self.lineEditProjetoNome.text())
+            self.lineEditExecucaoEmail.setText(self.lineEditProjetoEmail.text())
+
+
+
+        else:
+            # Limpar os campos da Execução se o checkbox for desmarcado
+            self.lineEditExecucaoRegistro.clear()
+            self.lineEditExecucaoInscricao.clear()
+            self.lineEditExecucaoNome.clear()
+            self.lineEditExecucaoEmail.clear()
+
+            self.radioButtonExecucaoEngCivil.setAutoExclusive(False)
+            self.radioButtonExecucaoArquitetura.setAutoExclusive(False)
+            self.radioButtonExecucaoEdificacoes.setAutoExclusive(False)
+            self.radioButtonExecucaoEngCivil.setChecked(False)
+            self.radioButtonExecucaoArquitetura.setChecked(False)
+            self.radioButtonExecucaoEdificacoes.setChecked(False)
+            self.radioButtonExecucaoEngCivil.setAutoExclusive(True)
+            self.radioButtonExecucaoArquitetura.setAutoExclusive(True)
+            self.radioButtonExecucaoEdificacoes.setAutoExclusive(True)
+
+            self.radioButtonExecucaoFeminino.setAutoExclusive(False)
+            self.radioButtonExecucaoMasculino.setAutoExclusive(False)
+            self.radioButtonExecucaoFeminino.setChecked(False)
+            self.radioButtonExecucaoMasculino.setChecked(False)
+            self.radioButtonExecucaoFeminino.setAutoExclusive(True)
+            self.radioButtonExecucaoMasculino.setAutoExclusive(True)
+
+            self.labelExecucaoRegistro.setText("Registro:")
+            self.lineEditExecucaoRegistro.setInputMask("")
 
 
     def limpar_campos(self):

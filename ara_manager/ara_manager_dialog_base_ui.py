@@ -9,6 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from . import resources
 
 
 class Ui_GerenciadorARADialogBase(object):
