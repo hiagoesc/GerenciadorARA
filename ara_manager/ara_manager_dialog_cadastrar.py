@@ -33,7 +33,7 @@ from qgis.core import QgsProject, QgsFeature, QgsGeometry, QgsPointXY, QgsExpres
 from PyQt5.QtCore import QDate
 from PyQt5.QtWidgets import QMessageBox
 from .ara_manager_dialog_cadastrar_ui import Ui_GerenciadorARADialogBase
-from . import resources
+from . import resources_rc
 from .utils import buscar_requerente_por_cpf
 
 class CadastroARADialog(QtWidgets.QDialog, Ui_GerenciadorARADialogBase):

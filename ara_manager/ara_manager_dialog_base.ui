@@ -101,6 +101,11 @@
     </disabled>
    </palette>
   </property>
+  <property name="font">
+   <font>
+    <family>Arial</family>
+   </font>
+  </property>
   <property name="windowTitle">
    <string>Gerenciador ARA</string>
   </property>

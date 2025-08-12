@@ -9,8 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from . import resources
-
+from . import resources_rc
 
 class Ui_GerenciadorARADialogBase(object):
     def setupUi(self, GerenciadorARADialogBase):
@@ -632,6 +631,7 @@ class Ui_GerenciadorARADialogBase(object):
         self.labelProjetoRegistro.setObjectName("labelProjetoRegistro")
         self.lineEditProjetoRegistro = QtWidgets.QLineEdit(self.autorProjeto)
         self.lineEditProjetoRegistro.setGeometry(QtCore.QRect(350, 10, 100, 40))
+        self.lineEditProjetoRegistro.setInputMask("")
         self.lineEditProjetoRegistro.setAlignment(QtCore.Qt.AlignCenter)
         self.lineEditProjetoRegistro.setPlaceholderText("")
         self.lineEditProjetoRegistro.setObjectName("lineEditProjetoRegistro")
@@ -737,6 +737,8 @@ class Ui_GerenciadorARADialogBase(object):
         self.labelExecucaoRegistro.setObjectName("labelExecucaoRegistro")
         self.lineEditExecucaoRegistro = QtWidgets.QLineEdit(self.responsavelObra)
         self.lineEditExecucaoRegistro.setGeometry(QtCore.QRect(350, 10, 100, 40))
+        self.lineEditExecucaoRegistro.setInputMask("")
+        self.lineEditExecucaoRegistro.setText("")
         self.lineEditExecucaoRegistro.setAlignment(QtCore.Qt.AlignCenter)
         self.lineEditExecucaoRegistro.setPlaceholderText("")
         self.lineEditExecucaoRegistro.setObjectName("lineEditExecucaoRegistro")
@@ -1020,7 +1022,6 @@ class Ui_GerenciadorARADialogBase(object):
         self.radioButtonProjetoMasculino.setText(_translate("GerenciadorARADialogBase", "Masculino"))
         self.labelProjetoNome.setText(_translate("GerenciadorARADialogBase", "Nome:"))
         self.labelProjetoRegistro.setText(_translate("GerenciadorARADialogBase", "Registro:"))
-        self.lineEditProjetoRegistro.setInputMask(_translate("GerenciadorARADialogBase", "000.000.000-00;_"))
         self.labelProjetoEmail.setText(_translate("GerenciadorARADialogBase", "Email:"))
         self.lineEditProjetoInscricao.setInputMask(_translate("GerenciadorARADialogBase", "000000;_"))
         self.labelProjetoInscricao.setText(_translate("GerenciadorARADialogBase", "IM:"))
@@ -1038,7 +1039,6 @@ class Ui_GerenciadorARADialogBase(object):
         self.labelExecucaoInscricao.setText(_translate("GerenciadorARADialogBase", "IM:"))
         self.lineEditExecucaoInscricao.setInputMask(_translate("GerenciadorARADialogBase", "000000;_"))
         self.labelExecucaoRegistro.setText(_translate("GerenciadorARADialogBase", "Registro:"))
-        self.lineEditExecucaoRegistro.setInputMask(_translate("GerenciadorARADialogBase", "000.000.000-00;_"))
         self.toolBoxTecnicos.setItemText(self.toolBoxTecnicos.indexOf(self.responsavelObra), _translate("GerenciadorARADialogBase", "Responsável pela Execução/Direção Técnica (e/ou pela Regularização)"))
         self.commandLinkButtonCancelarTecnico.setText(_translate("GerenciadorARADialogBase", "SAIR"))
         self.commandLinkButtonVoltarProjeto.setText(_translate("GerenciadorARADialogBase", "VOLTAR"))

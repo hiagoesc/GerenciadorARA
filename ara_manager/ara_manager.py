@@ -26,8 +26,8 @@ from qgis.PyQt.QtGui import QIcon
 from qgis.PyQt.QtWidgets import QAction, QMessageBox
 from qgis.core import QgsProject
 
-# Initialize Qt resources from file resources.py
-from . import resources
+# Initialize Qt resources from file resources_rc.py
+from . import resources_rc
 
 # Import the code for the dialog
 from .ara_manager_dialog_base import TelaPrincipal

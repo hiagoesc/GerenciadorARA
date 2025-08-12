@@ -1,0 +1,593 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>GerenciadorARADialogCadastrar</class>
+ <widget class="QDialog" name="GerenciadorARADialogCadastrar">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>932</width>
+    <height>500</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="palette">
+   <palette>
+    <active>
+     <colorrole role="Base">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Window">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="ToolTipBase">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </colorrole>
+    </active>
+    <inactive>
+     <colorrole role="Base">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Window">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="ToolTipBase">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </colorrole>
+    </inactive>
+    <disabled>
+     <colorrole role="Base">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Window">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="ToolTipBase">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </colorrole>
+    </disabled>
+   </palette>
+  </property>
+  <property name="windowTitle">
+   <string>Cadastrar ARA</string>
+  </property>
+  <property name="autoFillBackground">
+   <bool>true</bool>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayoutARADialogCadastrar_2">
+   <item>
+    <layout class="QVBoxLayout" name="verticalLayoutARADialogCadastrar">
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayoutTitulo">
+       <item>
+        <widget class="QLabel" name="labelBrasao">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>120</width>
+           <height>120</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>Arial</family>
+          </font>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="pixmap">
+          <pixmap resource="resources.qrc">:/img/brasao.png</pixmap>
+         </property>
+         <property name="scaledContents">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayoutTitulo">
+         <item>
+          <widget class="QLabel" name="labelCabecalhoTitulo">
+           <property name="font">
+            <font>
+             <family>Arial</family>
+             <pointsize>16</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>PREFEITURA DE SÃO JOSÉ DOS CAMPOS</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="labelCabecalhoSubtitulo">
+           <property name="font">
+            <font>
+             <family>Arial</family>
+             <pointsize>12</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>SECRETARIA DE URBANISMO E SUSTENTABILIDADE
+DEPARTAMENTO DE GESTÃO DE OBRAS PARTICULARES</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QLabel" name="labelTituloJanela">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>12</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>CADASTRAR ALVARÁ RESPONSÁVEL AUTOMÁTICO - ARA</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="margin">
+        <number>10</number>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QTabWidget" name="tabWidgetCadastrar">
+       <property name="currentIndex">
+        <number>0</number>
+       </property>
+       <widget class="QWidget" name="tabProcesso">
+        <attribute name="title">
+         <string>Processo</string>
+        </attribute>
+        <layout class="QVBoxLayout" name="tabProcessoVertical">
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayoutProcesso">
+           <item>
+            <widget class="QGroupBox" name="groupBoxProcesso">
+             <property name="title">
+              <string>Processo</string>
+             </property>
+             <layout class="QGridLayout" name="groupBoxProcessoGrid" columnstretch="0">
+              <item row="0" column="0">
+               <layout class="QGridLayout" name="gridLayoutProcesso" rowstretch="0,0" columnstretch="1,1,2,0,0">
+                <item row="0" column="0">
+                 <layout class="QVBoxLayout" name="verticalLayout0_0" stretch="0,0">
+                  <item>
+                   <widget class="QLabel" name="labelProcesso">
+                    <property name="text">
+                     <string>Nº do Processo:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="lineEditProcesso">
+                    <property name="layoutDirection">
+                     <enum>Qt::LeftToRight</enum>
+                    </property>
+                    <property name="inputMethodHints">
+                     <set>Qt::ImhNone</set>
+                    </property>
+                    <property name="inputMask">
+                     <string/>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                    </property>
+                    <property name="placeholderText">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item row="1" column="0">
+                 <layout class="QVBoxLayout" name="verticalLayout1_0" stretch="0,0">
+                  <item>
+                   <widget class="QLabel" name="labelAbertura">
+                    <property name="text">
+                     <string>Data de Abertura:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QDateEdit" name="dateEditAbertura">
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
+                    </property>
+                    <property name="dateTime">
+                     <datetime>
+                      <hour>0</hour>
+                      <minute>0</minute>
+                      <second>0</second>
+                      <year>2025</year>
+                      <month>7</month>
+                      <day>17</day>
+                     </datetime>
+                    </property>
+                    <property name="calendarPopup">
+                     <bool>true</bool>
+                    </property>
+                    <property name="timeSpec">
+                     <enum>Qt::LocalTime</enum>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item row="0" column="1">
+                 <layout class="QVBoxLayout" name="verticalLayout0_1">
+                  <item>
+                   <widget class="QLabel" name="labelAno">
+                    <property name="text">
+                     <string>Ano:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QSpinBox" name="spinBoxAno">
+                    <property name="wrapping">
+                     <bool>false</bool>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
+                    </property>
+                    <property name="suffix">
+                     <string/>
+                    </property>
+                    <property name="minimum">
+                     <number>1500</number>
+                    </property>
+                    <property name="maximum">
+                     <number>2900</number>
+                    </property>
+                    <property name="value">
+                     <number>2025</number>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item row="0" column="2">
+                 <layout class="QVBoxLayout" name="verticalLayout0_2">
+                  <item>
+                   <widget class="QLabel" name="labelTipoProcesso">
+                    <property name="text">
+                     <string>Tipo de Abertura do Processo:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QComboBox" name="comboBoxTipoProcesso">
+                    <item>
+                     <property name="text">
+                      <string>PREF BOOK (ONLINE)</string>
+                     </property>
+                     <property name="icon">
+                      <iconset resource="resources.qrc">
+                       <normaloff>:/img/e_proc_laranja.png</normaloff>:/img/e_proc_laranja.png</iconset>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>PROTOCOLO (PRESENCIALMENTE)</string>
+                     </property>
+                     <property name="icon">
+                      <iconset resource="resources.qrc">
+                       <normaloff>:/img/e_proc_azul.png</normaloff>:/img/e_proc_azul.png</iconset>
+                     </property>
+                    </item>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item row="1" column="1" colspan="2">
+                 <layout class="QVBoxLayout" name="verticalLayout1_1">
+                  <item>
+                   <widget class="QLabel" name="labelTipoAlvara">
+                    <property name="text">
+                     <string>Tipo de Alvará:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QComboBox" name="comboBoxTipoAlvara">
+                    <item>
+                     <property name="text">
+                      <string>A - ALVARÁ DE CONSTRUÇÃO</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>B - ALVARÁ DE AMPLIAÇÃO</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>C - ALVARÁ DE TRANSFORMAÇÃO</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>D - ALVARÁ DE REGULARIZAÇÃO</string>
+                     </property>
+                    </item>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="groupBoxRequerente">
+             <property name="title">
+              <string>Requerente</string>
+             </property>
+             <layout class="QGridLayout" name="groupBoxRequerenteGrid">
+              <item row="0" column="0">
+               <layout class="QGridLayout" name="gridLayoutRequerente" columnstretch="1,3">
+                <item row="0" column="0">
+                 <layout class="QVBoxLayout" name="verticalLayoutRequerente0_0">
+                  <item>
+                   <widget class="QLabel" name="labelRequerenteCPF_3">
+                    <property name="text">
+                     <string>CPF:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="lineEditRequerenteCPF_2">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>16777215</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                    <property name="inputMask">
+                     <string>000.000.000-00;_</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
+                    </property>
+                    <property name="placeholderText">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item row="0" column="1">
+                 <layout class="QVBoxLayout" name="verticalLayoutRequerente0_1">
+                  <item>
+                   <widget class="QLabel" name="labelRequerenteNome">
+                    <property name="text">
+                     <string>Nome:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="lineEditRequerenteNome">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>16777215</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                    <property name="inputMask">
+                     <string/>
+                    </property>
+                    <property name="placeholderText">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayoutBotoes">
+             <item>
+              <widget class="QCommandLinkButton" name="commandLinkVoltarProcesso">
+               <property name="text">
+                <string>Voltar</string>
+               </property>
+               <property name="icon">
+                <iconset resource="resources.qrc">
+                 <normaloff>:/img/icone_voltar.png</normaloff>:/img/icone_voltar.png</iconset>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCommandLinkButton" name="commandLinkAvancarProcesso">
+               <property name="text">
+                <string>Avançar</string>
+               </property>
+               <property name="icon">
+                <iconset resource="resources.qrc">
+                 <normaloff>:/img/icone_avancar.png</normaloff>:/img/icone_avancar.png</iconset>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCommandLinkButton" name="commandLinkLimparProcesso">
+               <property name="text">
+                <string>Limpar</string>
+               </property>
+               <property name="icon">
+                <iconset resource="resources.qrc">
+                 <normaloff>:/img/limpar.png</normaloff>:/img/limpar.png</iconset>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCommandLinkButton" name="commandLinkSalvarProcesso">
+               <property name="text">
+                <string>Salvar</string>
+               </property>
+               <property name="icon">
+                <iconset resource="resources.qrc">
+                 <normaloff>:/img/icone_pin.png</normaloff>:/img/icone_pin.png</iconset>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCommandLinkButton" name="commandLinkCancelarProcesso">
+               <property name="text">
+                <string>Cancelar</string>
+               </property>
+               <property name="icon">
+                <iconset resource="resources.qrc">
+                 <normaloff>:/img/x.png</normaloff>:/img/x.png</iconset>
+               </property>
+               <property name="checkable">
+                <bool>false</bool>
+               </property>
+               <property name="checked">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="tabLocal">
+        <attribute name="title">
+         <string>Local</string>
+        </attribute>
+       </widget>
+       <widget class="QWidget" name="tabProjeto">
+        <attribute name="title">
+         <string>Projeto</string>
+        </attribute>
+       </widget>
+       <widget class="QWidget" name="tabTecnico">
+        <attribute name="title">
+         <string>Técnico</string>
+        </attribute>
+       </widget>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>
