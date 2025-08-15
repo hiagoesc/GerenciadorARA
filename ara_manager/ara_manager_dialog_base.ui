@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>600</width>
+    <width>601</width>
     <height>500</height>
    </rect>
   </property>
@@ -195,6 +195,9 @@ DEPARTAMENTO DE GESTÃO DE OBRAS PARTICULARES</string>
          <bold>true</bold>
         </font>
        </property>
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
        <property name="text">
         <string>GERENCIADOR DE ALVARÁS RESPONSÁVEIS AUTOMÁTICOS - ARA</string>
        </property>
@@ -202,7 +205,7 @@ DEPARTAMENTO DE GESTÃO DE OBRAS PARTICULARES</string>
         <set>Qt::AlignCenter</set>
        </property>
        <property name="margin">
-        <number>10</number>
+        <number>5</number>
        </property>
       </widget>
      </item>

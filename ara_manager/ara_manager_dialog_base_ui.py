@@ -15,7 +15,7 @@ from . import resources_rc
 class Ui_GerenciadorARADialogBase(object):
     def setupUi(self, GerenciadorARADialogBase):
         GerenciadorARADialogBase.setObjectName("GerenciadorARADialogBase")
-        GerenciadorARADialogBase.resize(600, 500)
+        GerenciadorARADialogBase.resize(601, 500)
         palette = QtGui.QPalette()
         brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
         brush.setStyle(QtCore.Qt.SolidPattern)
@@ -45,6 +45,9 @@ class Ui_GerenciadorARADialogBase(object):
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.ToolTipBase, brush)
         GerenciadorARADialogBase.setPalette(palette)
+        font = QtGui.QFont()
+        font.setFamily("Arial")
+        GerenciadorARADialogBase.setFont(font)
         GerenciadorARADialogBase.setAutoFillBackground(False)
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(GerenciadorARADialogBase)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
@@ -95,6 +98,7 @@ class Ui_GerenciadorARADialogBase(object):
         font.setBold(True)
         font.setWeight(75)
         self.labelTituloJanela.setFont(font)
+        self.labelTituloJanela.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.labelTituloJanela.setAlignment(QtCore.Qt.AlignCenter)
         self.labelTituloJanela.setObjectName("labelTituloJanela")
         self.verticalLayoutARADialogBase.addWidget(self.labelTituloJanela)
@@ -191,3 +195,4 @@ class Ui_GerenciadorARADialogBase(object):
         self.pushButtonDashboard.setText(_translate("GerenciadorARADialogBase", "Painel de Processos"))
         self.pushButtonRelatorio.setText(_translate("GerenciadorARADialogBase", "Relatório de Processo"))
         self.pushButtonCadastrar.setText(_translate("GerenciadorARADialogBase", "Cadastrar Processo"))
+

@@ -32,108 +32,131 @@ from qgis.PyQt import QtWidgets
 from qgis.core import QgsProject, QgsFeature, QgsGeometry, QgsPointXY, QgsExpression, QgsFeatureRequest
 from PyQt5.QtCore import QDate
 from PyQt5.QtWidgets import QMessageBox
-from .ara_manager_dialog_cadastrar_ui import Ui_GerenciadorARADialogBase
+from .ara_manager_dialog_cadastrar_ui import Ui_GerenciadorARADialogCadastrar
 from . import resources_rc
 from .utils import buscar_requerente_por_cpf
 
-class CadastroARADialog(QtWidgets.QDialog, Ui_GerenciadorARADialogBase):
+class CadastroARADialog(QtWidgets.QDialog, Ui_GerenciadorARADialogCadastrar):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setupUi(self)
 
-        # Preencher o ano atual no spinBoxAno e definir intervalo
+        # Preencher o ano atual no spinBox Ano e definir intervalo
         ano_atual = QDate.currentDate().year()
         self.spinBoxAno.setValue(ano_atual)
         self.spinBoxAno.setRange(1900, ano_atual)
 
-        # Atualiza o campo de data    
+        # Atualiza o campo de data para a data atual
         self.dateEditAbertura.setDate(QDate.currentDate())
 
-        self.radioButtonProjetoEngCivil.toggled.connect(self.atualizar_label_registro)
-        self.radioButtonProjetoArquitetura.toggled.connect(self.atualizar_label_registro)
-        self.radioButtonProjetoEdificacoes.toggled.connect(self.atualizar_label_registro)
-
-        # Conecta sinais
+        # Atualiza o campo de nome do requerente caso o cpf digitado já esteja cadastrado
         self.lineEditRequerenteCPF.textChanged.connect(self.ao_digitar_cpf)
 
-        # formata os dígitos da inscrição digitados
+        # Formata os dígitos da inscrição digitados
         self.lineEditQuadra.editingFinished.connect(self.formatar_quadra)
         self.lineEditLote.editingFinished.connect(self.formatar_lote)
         self.lineEditUnidade.editingFinished.connect(self.verificar_unidade)
 
-        # atualiza inscrição após digitação
+        # Atualiza campo da inscrição completa após digitação de setor, quadra, lote e unidade
         self.lineEditSetor.textChanged.connect(self.atualizar_inscricao)
         self.lineEditQuadra.textChanged.connect(self.atualizar_inscricao)
         self.lineEditLote.textChanged.connect(self.atualizar_inscricao)
         self.lineEditUnidade.textChanged.connect(self.atualizar_inscricao)
 
-        self.lineEditInscricaoImobiliaria.editingFinished.connect(self.atualizar_campos_a_partir_da_inscricao)
+        # Atualiza campos de setor, quadra, lote e unidade após digitação da inscrição completa
+        self.lineEditInscricao.editingFinished.connect(self.atualizar_campos_a_partir_da_inscricao)
 
-        self.lineEditCEP.editingFinished.connect(self.preencher_logradouro)
+        # Atualiza o campo de endereço após consulta do CEP em API de CEP
+        self.lineEditCEP.editingFinished.connect(self.preencher_logradouro)        
 
-        self.commandLinkButtonCadastrar.clicked.connect(self.salvar_dados_processo)
+        # Atualiza campos de registro do profissional autor do projeto a partir da formação selecionada no redio button
+        self.radioButtonAutorProjetoProfissionalEngCivil.toggled.connect(self.atualizar_label_registro_autor_projeto)
+        self.radioButtonAutorProjetoProfissionalArquitetura.toggled.connect(self.atualizar_label_registro_autor_projeto)
+        self.radioButtonAutorProjetoProfissionalEdificacoes.toggled.connect(self.atualizar_label_registro_autor_projeto)
+        
+        # Atualiza campos de registro do profissional autor do projeto a partir da formação selecionada no redio button
+        self.radioButtonResponsavelExecucaoProfissionalEngCivil.toggled.connect(self.atualizar_label_registro_responsavel_execucao)
+        self.radioButtonResponsavelExecucaoProfissionalArquitetura.toggled.connect(self.atualizar_label_registro_responsavel_execucao)
+        self.radioButtonResponsavelExecucaoProfissionalEdificacoes.toggled.connect(self.atualizar_label_registro_responsavel_execucao)
+
+        # Atualiza os campos do técnico caso o checkBox não esteja selecionado
+        self.lineEditRequerenteCPF.textChanged.connect(self.ao_digitar_cpf)
+
+        ### Implantar desativação do botão salvar até tudo estar preenchido | 
 
         # Botões de navegação entre abas e de cancelamento
-        self.commandLinkButtonAvancarLocal.clicked.connect(self.ir_para_aba_local)
-        self.commandLinkButtonCancelarProcesso.clicked.connect(self.close)
+        ### Implantar desativação do botão voltar
+        self.pushButtonAvancarProcesso.clicked.connect(self.ir_para_aba_local)
+        self.pushButtonLimparProcesso.clicked.connect(self.limpar_campos)
+        self.pushButtonSalvarProcesso.clicked.connect(self.salvar_dados_processo)
+        self.pushButtonCancelarProcesso.clicked.connect(self.close)
 
-        self.commandLinkButtonVoltarProcesso.clicked.connect(self.ir_para_aba_processo)
-        self.commandLinkButtonAvancarProjeto.clicked.connect(self.ir_para_aba_projeto)
-        self.commandLinkButtonCancelarLocal.clicked.connect(self.close)
+        self.pushButtonVoltarLocal.clicked.connect(self.ir_para_aba_processo)
+        self.pushButtonAvancarLocal.clicked.connect(self.ir_para_aba_projeto)
+        self.pushButtonLimparLocal.clicked.connect(self.limpar_campos)
+        self.pushButtonSalvarLocal.clicked.connect(self.salvar_dados_processo)
+        self.pushButtonCancelarLocal.clicked.connect(self.close)
 
-        self.commandLinkButtonVoltarLocal.clicked.connect(self.ir_para_aba_local)
-        self.commandLinkButtonAvancarTecnico.clicked.connect(self.ir_para_aba_tecnico)
-        self.commandLinkButtonCancelarProjeto.clicked.connect(self.close)
+        self.pushButtonVoltarProjeto.clicked.connect(self.ir_para_aba_local)
+        self.pushButtonAvancarProjeto.clicked.connect(self.ir_para_aba_tecnico)
+        self.pushButtonLimparProjeto.clicked.connect(self.limpar_campos)
+        self.pushButtonSalvarProjeto.clicked.connect(self.salvar_dados_processo)
+        self.pushButtonCancelarProjeto.clicked.connect(self.close)
 
-        self.commandLinkButtonVoltarProjeto.clicked.connect(self.ir_para_aba_projeto)
-        self.commandLinkButtonCancelarTecnico.clicked.connect(self.close)
+        self.pushButtonVoltarTecnico.clicked.connect(self.ir_para_aba_projeto)
+        ### Implantar desativação do botão avançar
+        self.pushButtonLimparTecnico.clicked.connect(self.limpar_campos)
+        self.pushButtonSalvarTecnico.clicked.connect(self.salvar_dados_processo)
+        self.pushButtonCancelarTecnico.clicked.connect(self.close)
 
-
-        self.checkBoxExecucao.stateChanged.connect(self.preencher_dados_responsavel)
+        ### Implantar limpar dados profissiona caso sejam profissionais distintos
+        # self.checkBoxAutorProjetoDistinto.stateChanged.connect(self.limpar_dados_responsavel_execucao)
+        # self.checkBoxResponsavelExecucaoDistinto.stateChanged.connect(self.limpar_dados_autor_projeto)
 
 
     def closeEvent(self, event):
         self.limpar_campos()
         event.accept()  # Permite que a janela seja fechada normalmente
 
-    def atualizar_label_registro(self):
-        if self.radioButtonProjetoEngCivil.isChecked():
-            self.labelProjetoRegistro.setText("CREA:")
-            self.lineEditProjetoRegistro.clear()
-            self.lineEditProjetoRegistro.setInputMask("0000000000;_") 
-        elif self.radioButtonProjetoArquitetura.isChecked():
-            self.labelProjetoRegistro.setText("CAU:")
-            self.lineEditProjetoRegistro.clear()
-            self.lineEditProjetoRegistro.setInputMask("A000000-0;_")
-            self.lineEditProjetoRegistro.setText("A")
-            self.lineEditProjetoRegistro.setCursorPosition(1)
-        elif self.radioButtonProjetoEdificacoes.isChecked():
-            self.labelProjetoRegistro.setText("CRT:")
-            self.lineEditProjetoRegistro.clear()
-            self.lineEditProjetoRegistro.setInputMask("000.000.000-00;_") 
+    def atualizar_label_registro_autor_projeto(self):
+        if self.radioButtonAutorProjetoProfissionalEngCivil.isChecked():
+            self.labelAutorProjetoRegistro.setText("CREA:")
+            self.lineEditAutorProjetoRegistro.clear()
+            self.lineEditAutorProjetoRegistro.setInputMask("0000000000;_") 
+        elif self.radioButtonAutorProjetoProfissionalArquitetura.isChecked():
+            self.labelAutorProjetoRegistro.setText("CAU:")
+            self.lineEditAutorProjetoRegistro.clear()
+            self.lineEditAutorProjetoRegistro.setInputMask("A000000-0;_")
+            self.lineEditAutorProjetoRegistro.setText("A")
+            self.lineEditAutorProjetoRegistro.setCursorPosition(1)
+        elif self.radioButtonAutorProjetoProfissionalEdificacoes.isChecked():
+            self.labelAutorProjetoRegistro.setText("CRT:")
+            self.lineEditAutorProjetoRegistro.clear()
+            self.lineEditAutorProjetoRegistro.setInputMask("000.000.000-00;_") 
         else:
-            self.labelProjetoRegistro.setText("Registro:")
-            self.lineEditProjetoRegistro.clear()
-            self.lineEditProjetoRegistro.setInputMask("")
+            self.labelAutorProjetoRegistro.setText("Registro:")
+            self.lineEditAutorProjetoRegistro.clear()
+            self.lineEditAutorProjetoRegistro.setInputMask("")
 
-        if self.radioButtonExecucaoEngCivil.isChecked():
-            self.labelExecucaoRegistro.setText("CREA:")
-            self.lineEditExecucaoRegistro.clear()
-            self.lineEditExecucaoRegistro.setInputMask("0000000000;_") 
-        elif self.radioButtonExecucaoArquitetura.isChecked():
-            self.labelExecucaoRegistro.setText("CAU:")
-            self.lineEditExecucaoRegistro.clear()
-            self.lineEditExecucaoRegistro.setInputMask("A000000-0;_")
-            self.lineEditExecucaoRegistro.setText("A")
-            self.lineEditExecucaoRegistro.setCursorPosition(1)
-        elif self.radioButtonExecucaoEdificacoes.isChecked():
-            self.labelExecucaoRegistro.setText("CRT:")
-            self.lineEditExecucaoRegistro.clear()
-            self.lineEditExecucaoRegistro.setInputMask("000.000.000-00;_") 
+    def atualizar_label_registro_responsavel_execucao(self):
+        if self.radioButtonResponsavelExecucaoProfissionalEngCivil.isChecked():
+            self.labelResponsavelExecucaoRegistro.setText("CREA:")
+            self.lineEditResponsavelExecucaoRegistro.clear()
+            self.lineEditResponsavelExecucaoRegistro.setInputMask("0000000000;_") 
+        elif self.radioButtonResponsavelExecucaoProfissionalArquitetura.isChecked():
+            self.labelResponsavelExecucaoRegistro.setText("CAU:")
+            self.lineEditResponsavelExecucaoRegistro.clear()
+            self.lineEditResponsavelExecucaoRegistro.setInputMask("A000000-0;_")
+            self.lineEditResponsavelExecucaoRegistro.setText("A")
+            self.lineEditResponsavelExecucaoRegistro.setCursorPosition(1)
+        elif self.radioButtonResponsavelExecucaoProfissionalEdificacoes.isChecked():
+            self.labelResponsavelExecucaoRegistro.setText("CRT:")
+            self.lineEditResponsavelExecucaoRegistro.clear()
+            self.lineEditResponsavelExecucaoRegistro.setInputMask("000.000.000-00;_") 
         else:
-            self.labelExecucaoRegistro.setText("Registro:")
-            self.lineEditExecucaoRegistro.clear()
-            self.lineEditExecucaoRegistro.setInputMask("")
+            self.labelResponsavelExecucaoRegistro.setText("Registro:")
+            self.lineEditResponsavelExecucaoRegistro.clear()
+            self.lineEditResponsavelExecucaoRegistro.setInputMask("")
 
     def ao_digitar_cpf(self):
         texto = self.lineEditRequerenteCPF.text()
@@ -173,10 +196,10 @@ class CadastroARADialog(QtWidgets.QDialog, Ui_GerenciadorARADialogBase):
         unidade = self.lineEditUnidade.text().zfill(4)[:4] if self.lineEditUnidade.text() else '0000'
 
         inscricao = f"{setor}{quadra}{lote}{unidade}"
-        self.lineEditInscricaoImobiliaria.setText(inscricao)
+        self.lineEditInscricao.setText(inscricao)
 
     def atualizar_campos_a_partir_da_inscricao(self):
-        inscricao = self.lineEditInscricaoImobiliaria.text()
+        inscricao = self.lineEditInscricao.text()
         inscricao = re.sub(r'\D', '', inscricao)  # Remove tudo que não for dígito
 
         if len(inscricao) != 14:
@@ -203,7 +226,9 @@ class CadastroARADialog(QtWidgets.QDialog, Ui_GerenciadorARADialogBase):
     def ir_para_aba_tecnico(self):
         self.tabWidgetCadastrar.setCurrentIndex(3)
 
-
+    
+    '''
+    # Será corrigido com a implantação do limpar_dados_responsavel_execucao e limpar_dados_autor_projeto
     def preencher_dados_responsavel(self):
         if self.checkBoxExecucao.isChecked():
 
@@ -255,7 +280,7 @@ class CadastroARADialog(QtWidgets.QDialog, Ui_GerenciadorARADialogBase):
 
             self.labelExecucaoRegistro.setText("Registro:")
             self.lineEditExecucaoRegistro.setInputMask("")
-
+    '''
 
     def limpar_campos(self):
         self.tabWidgetCadastrar.setCurrentIndex(0)
@@ -274,7 +299,7 @@ class CadastroARADialog(QtWidgets.QDialog, Ui_GerenciadorARADialogBase):
         self.lineEditQuadra.clear()
         self.lineEditLote.clear()
         self.lineEditUnidade.setText('0000')
-        self.lineEditInscricaoImobiliaria.clear()
+        self.lineEditInscricao.clear()
         self.lineEditLatitudeGraus.setText('23')
         self.lineEditLatitudeMinutos.clear()
         self.lineEditLatitudeSegundos.clear()
@@ -285,7 +310,7 @@ class CadastroARADialog(QtWidgets.QDialog, Ui_GerenciadorARADialogBase):
         self.lineEditLongitudeSegundosDecimais.setText('00')
         self.lineEditCEP.clear()
         self.lineEditNomeLogradouro.clear()
-        self.lineEditNumeroPredial.clear()
+        self.lineEditNumPredial.clear()
 
         # Aba Projeto
         self.checkBoxConstrucao.setChecked(False)
@@ -295,8 +320,8 @@ class CadastroARADialog(QtWidgets.QDialog, Ui_GerenciadorARADialogBase):
 
         self.comboBoxAtividade.setCurrentIndex(0)
         self.comboBoxAtividadeMista.setCurrentIndex(0)
-        self.comboBoxZoneamentoAdotado.setCurrentIndex(0)
-        self.comboBoxZoneamentoSecundario.setCurrentIndex(0)
+        self.comboBoxZoneamento.setCurrentIndex(0)
+        self.comboBoxMacrozoneamento.setCurrentIndex(0)
 
         self.lineEditCotaMaisBaixa.clear()
         self.lineEditCotaMaisBaixaDecimais.clear()
@@ -411,8 +436,8 @@ class CadastroARADialog(QtWidgets.QDialog, Ui_GerenciadorARADialogBase):
 
         atividade = self.comboBoxAtividade.currentText()
         atividade_misto = self.comboBoxAtividadeMista.currentText()
-        zona_principal = self.comboBoxZoneamentoAdotado.currentText()
-        zona_secundaria = self.comboBoxZoneamentoSecundario.currentText()
+        zona_principal = self.comboBoxZoneamento.currentText()
+        zona_secundaria = self.comboBoxMacrozoneamento.currentText()
 
         feat["atividade"] = atividade if atividade != "Selecione" else ""
         feat["atividade_misto"] = atividade_misto if atividade_misto != "Selecione" else ""
@@ -450,10 +475,10 @@ class CadastroARADialog(QtWidgets.QDialog, Ui_GerenciadorARADialogBase):
 
     def salvar_dados_processo(self):
         numero_processo = self._obter_numero_processo()
-        inscricao = self.lineEditInscricaoImobiliaria.text().strip()
+        inscricao = self.lineEditInscricao.text().strip()
         cep = self.lineEditCEP.text().strip()
         endereco = self.lineEditNomeLogradouro.text().strip()
-        numero_predial = self.lineEditNumeroPredial.text().strip()
+        numero_predial = self.lineEditNumPredial.text().strip()
         cpf = self.lineEditRequerenteCPF.text().strip()
         nome = self.lineEditRequerenteNome.text().strip()
 
