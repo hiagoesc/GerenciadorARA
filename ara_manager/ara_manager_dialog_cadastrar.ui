@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>750</width>
-    <height>550</height>
+    <width>885</width>
+    <height>557</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -297,7 +297,7 @@ DEPARTAMENTO DE GESTÃO DE OBRAS PARTICULARES</string>
         </font>
        </property>
        <property name="currentIndex">
-        <number>0</number>
+        <number>2</number>
        </property>
        <widget class="QWidget" name="tabProcesso">
         <attribute name="title">
@@ -2321,115 +2321,7 @@ DEPARTAMENTO DE GESTÃO DE OBRAS PARTICULARES</string>
                 <item row="0" column="0">
                  <layout class="QHBoxLayout" name="horizontalLayoutCotasMaisAlta" stretch="2,1,0,1,1">
                   <item>
-                   <widget class="QLabel" name="labelCotaMaisAlta">
-                    <property name="text">
-                     <string>Nível do ponto mais alto da edificação:</string>
-                    </property>
-                    <property name="wordWrap">
-                     <bool>true</bool>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QLineEdit" name="lineEditCotaMaisAlta">
-                    <property name="sizePolicy">
-                     <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-                      <horstretch>0</horstretch>
-                      <verstretch>0</verstretch>
-                     </sizepolicy>
-                    </property>
-                    <property name="minimumSize">
-                     <size>
-                      <width>0</width>
-                      <height>30</height>
-                     </size>
-                    </property>
-                    <property name="maximumSize">
-                     <size>
-                      <width>40</width>
-                      <height>16777215</height>
-                     </size>
-                    </property>
-                    <property name="alignment">
-                     <set>Qt::AlignCenter</set>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QLabel" name="labelCotaMaisAltaSeparador">
-                    <property name="sizePolicy">
-                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                      <horstretch>0</horstretch>
-                      <verstretch>0</verstretch>
-                     </sizepolicy>
-                    </property>
-                    <property name="minimumSize">
-                     <size>
-                      <width>0</width>
-                      <height>30</height>
-                     </size>
-                    </property>
-                    <property name="text">
-                     <string>,</string>
-                    </property>
-                    <property name="alignment">
-                     <set>Qt::AlignBottom|Qt::AlignHCenter</set>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QLineEdit" name="lineEditCotaMaisAltaDecimais">
-                    <property name="minimumSize">
-                     <size>
-                      <width>0</width>
-                      <height>30</height>
-                     </size>
-                    </property>
-                    <property name="maximumSize">
-                     <size>
-                      <width>40</width>
-                      <height>16777215</height>
-                     </size>
-                    </property>
-                    <property name="text">
-                     <string>00</string>
-                    </property>
-                    <property name="alignment">
-                     <set>Qt::AlignCenter</set>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QLabel" name="labelCotaMaisAltaUnidade">
-                    <property name="sizePolicy">
-                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                      <horstretch>0</horstretch>
-                      <verstretch>0</verstretch>
-                     </sizepolicy>
-                    </property>
-                    <property name="minimumSize">
-                     <size>
-                      <width>0</width>
-                      <height>30</height>
-                     </size>
-                    </property>
-                    <property name="text">
-                     <string>m</string>
-                    </property>
-                    <property name="alignment">
-                     <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </item>
-                <item row="0" column="1">
-                 <layout class="QHBoxLayout" name="horizontalLayoutCotaMaisBaixa" stretch="2,1,0,1,1">
-                  <item>
                    <widget class="QLabel" name="labelCotaMaisBaixa">
-                    <property name="autoFillBackground">
-                     <bool>false</bool>
-                    </property>
                     <property name="text">
                      <string>Nível do ponto mais baixo da edificação:</string>
                     </property>
@@ -2440,6 +2332,12 @@ DEPARTAMENTO DE GESTÃO DE OBRAS PARTICULARES</string>
                   </item>
                   <item>
                    <widget class="QLineEdit" name="lineEditCotaMaisBaixa">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
                     <property name="minimumSize">
                      <size>
                       <width>0</width>
@@ -2503,6 +2401,108 @@ DEPARTAMENTO DE GESTÃO DE OBRAS PARTICULARES</string>
                   </item>
                   <item>
                    <widget class="QLabel" name="labelCotaMaisBaixaUnidade">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="text">
+                     <string>m</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item row="0" column="1">
+                 <layout class="QHBoxLayout" name="horizontalLayoutCotaMaisBaixa" stretch="2,1,0,1,1">
+                  <item>
+                   <widget class="QLabel" name="labelCotaMaisAlta">
+                    <property name="autoFillBackground">
+                     <bool>false</bool>
+                    </property>
+                    <property name="text">
+                     <string>Nível do ponto mais alto da edificação:</string>
+                    </property>
+                    <property name="wordWrap">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="lineEditCotaMaisAlta">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>40</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLabel" name="labelCotaMaisAltaSeparador">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="text">
+                     <string>,</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignBottom|Qt::AlignHCenter</set>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="lineEditCotaMaisAltaDecimais">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>40</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="text">
+                     <string>00</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLabel" name="labelCotaMaisAltaUnidade">
                     <property name="sizePolicy">
                      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                       <horstretch>0</horstretch>
@@ -3424,10 +3424,10 @@ DEPARTAMENTO DE GESTÃO DE OBRAS PARTICULARES</string>
   <tabstop>comboBoxAtividadeMista</tabstop>
   <tabstop>comboBoxZoneamento</tabstop>
   <tabstop>comboBoxMacrozoneamento</tabstop>
-  <tabstop>lineEditCotaMaisAlta</tabstop>
-  <tabstop>lineEditCotaMaisAltaDecimais</tabstop>
   <tabstop>lineEditCotaMaisBaixa</tabstop>
   <tabstop>lineEditCotaMaisBaixaDecimais</tabstop>
+  <tabstop>lineEditCotaMaisAlta</tabstop>
+  <tabstop>lineEditCotaMaisAltaDecimais</tabstop>
   <tabstop>pushButtonVoltarProjeto</tabstop>
   <tabstop>pushButtonAvancarProjeto</tabstop>
   <tabstop>pushButtonLimparProjeto</tabstop>

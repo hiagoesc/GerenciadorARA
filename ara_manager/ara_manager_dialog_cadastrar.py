@@ -67,51 +67,127 @@ class CadastroARADialog(QtWidgets.QDialog, Ui_GerenciadorARADialogCadastrar):
         self.lineEditInscricao.editingFinished.connect(self.atualizar_campos_a_partir_da_inscricao)
 
         # Atualiza o campo de endereço após consulta do CEP em API de CEP
-        self.lineEditCEP.editingFinished.connect(self.preencher_logradouro)        
+        self.lineEditCEP.editingFinished.connect(self.preencher_logradouro)
+
+        self.desativar_campos_execucao()
 
         # Atualiza campos de registro do profissional autor do projeto a partir da formação selecionada no redio button
         self.radioButtonAutorProjetoProfissionalEngCivil.toggled.connect(self.atualizar_label_registro_autor_projeto)
         self.radioButtonAutorProjetoProfissionalArquitetura.toggled.connect(self.atualizar_label_registro_autor_projeto)
         self.radioButtonAutorProjetoProfissionalEdificacoes.toggled.connect(self.atualizar_label_registro_autor_projeto)
-        
-        # Atualiza campos de registro do profissional autor do projeto a partir da formação selecionada no redio button
+
         self.radioButtonResponsavelExecucaoProfissionalEngCivil.toggled.connect(self.atualizar_label_registro_responsavel_execucao)
         self.radioButtonResponsavelExecucaoProfissionalArquitetura.toggled.connect(self.atualizar_label_registro_responsavel_execucao)
         self.radioButtonResponsavelExecucaoProfissionalEdificacoes.toggled.connect(self.atualizar_label_registro_responsavel_execucao)
 
+        self.radioButtonAutorProjetoProfissionalEngCivil.toggled.connect(self.atualizar_execucao)
+        self.radioButtonAutorProjetoProfissionalArquitetura.toggled.connect(self.atualizar_execucao)
+        self.radioButtonAutorProjetoProfissionalEdificacoes.toggled.connect(self.atualizar_execucao)
+
+        # Conectar os campos de Autor para atualizar automaticamente Execução
+        self.lineEditAutorProjetoRegistro.textChanged.connect(self.atualizar_execucao)
+        self.lineEditAutorProjetoInscricao.textChanged.connect(self.atualizar_execucao)
+        self.lineEditAutorProjetoNome.textChanged.connect(self.atualizar_execucao)
+        self.lineEditAutorProjetoEmail.textChanged.connect(self.atualizar_execucao)
+        
+        # Conectar o checkbox de "Autor do Projeto" ao sincronizador
+        self.checkBoxAutorProjetoDistinto.toggled.connect(self.sincronizar_profissionais_distintos)
+        self.checkBoxResponsavelExecucaoDistinto.toggled.connect(self.dessincronizar_profissionais_distintos)
+
         # Atualiza os campos do técnico caso o checkBox não esteja selecionado
         self.lineEditRequerenteCPF.textChanged.connect(self.ao_digitar_cpf)
 
-        ### Implantar desativação do botão salvar até tudo estar preenchido | 
-
         # Botões de navegação entre abas e de cancelamento
-        ### Implantar desativação do botão voltar
+        self.pushButtonVoltarProcesso.setEnabled(False)
         self.pushButtonAvancarProcesso.clicked.connect(self.ir_para_aba_local)
-        self.pushButtonLimparProcesso.clicked.connect(self.limpar_campos)
-        self.pushButtonSalvarProcesso.clicked.connect(self.salvar_dados_processo)
+        self.pushButtonLimparProcesso.clicked.connect(self.confirmar_limpeza)
+        self.pushButtonSalvarProcesso.clicked.connect(self.confirmar_salvar)
         self.pushButtonCancelarProcesso.clicked.connect(self.close)
 
         self.pushButtonVoltarLocal.clicked.connect(self.ir_para_aba_processo)
         self.pushButtonAvancarLocal.clicked.connect(self.ir_para_aba_projeto)
-        self.pushButtonLimparLocal.clicked.connect(self.limpar_campos)
-        self.pushButtonSalvarLocal.clicked.connect(self.salvar_dados_processo)
+        self.pushButtonLimparLocal.clicked.connect(self.confirmar_limpeza)
+        self.pushButtonSalvarLocal.clicked.connect(self.confirmar_salvar)
         self.pushButtonCancelarLocal.clicked.connect(self.close)
 
         self.pushButtonVoltarProjeto.clicked.connect(self.ir_para_aba_local)
         self.pushButtonAvancarProjeto.clicked.connect(self.ir_para_aba_tecnico)
-        self.pushButtonLimparProjeto.clicked.connect(self.limpar_campos)
-        self.pushButtonSalvarProjeto.clicked.connect(self.salvar_dados_processo)
+        self.pushButtonLimparProjeto.clicked.connect(self.confirmar_limpeza)
+        self.pushButtonSalvarProjeto.clicked.connect(self.confirmar_salvar)
         self.pushButtonCancelarProjeto.clicked.connect(self.close)
 
         self.pushButtonVoltarTecnico.clicked.connect(self.ir_para_aba_projeto)
-        ### Implantar desativação do botão avançar
-        self.pushButtonLimparTecnico.clicked.connect(self.limpar_campos)
-        self.pushButtonSalvarTecnico.clicked.connect(self.salvar_dados_processo)
+        self.pushButtonAvancarTecnico.setEnabled(False)
+        self.pushButtonLimparTecnico.clicked.connect(self.confirmar_limpeza)
+        self.pushButtonSalvarTecnico.clicked.connect(self.confirmar_salvar)
         self.pushButtonCancelarTecnico.clicked.connect(self.close)
 
-        ### Implantar limpar dados profissiona caso sejam profissionais distintos
-        # self.checkBoxAutorProjetoDistinto.stateChanged.connect(self.limpar_dados_responsavel_execucao)
-        # self.checkBoxResponsavelExecucaoDistinto.stateChanged.connect(self.limpar_dados_autor_projeto)
+    def desativar_campos_execucao(self):
+        self.checkBoxResponsavelExecucaoDistinto.setEnabled(False)
+        self.labelResponsavelExecucaoProfissional.setEnabled(False)
+        self.radioButtonResponsavelExecucaoProfissionalEngCivil.setEnabled(False)
+        self.radioButtonResponsavelExecucaoProfissionalArquitetura.setEnabled(False)
+        self.radioButtonResponsavelExecucaoProfissionalEdificacoes.setEnabled(False)
+        self.labelResponsavelExecucaoRegistro.setEnabled(False)
+        self.lineEditResponsavelExecucaoRegistro.setEnabled(False)
+        self.labelResponsavelExecucaoInscricao.setEnabled(False)
+        self.lineEditResponsavelExecucaoInscricao.setEnabled(False)
+        self.labelResponsavelExecucaoNome.setEnabled(False)
+        self.lineEditResponsavelExecucaoNome.setEnabled(False)
+        self.labelResponsavelExecucaoEmail.setEnabled(False)
+        self.lineEditResponsavelExecucaoEmail.setEnabled(False)
+
+    def sincronizar_profissionais_distintos(self, checked):
+        """Se marcado no Projeto, marca também no Execução"""
+        self.checkBoxResponsavelExecucaoDistinto.setChecked(checked)
+        self.radioButtonResponsavelExecucaoProfissionalEngCivil.setChecked(False)
+        self.radioButtonResponsavelExecucaoProfissionalArquitetura.setChecked(False)
+        self.radioButtonResponsavelExecucaoProfissionalEdificacoes.setChecked(False)
+        self.radioButtonResponsavelExecucaoProfissionalEngCivil.setAutoExclusive(True)
+        self.radioButtonResponsavelExecucaoProfissionalArquitetura.setAutoExclusive(True)
+        self.radioButtonResponsavelExecucaoProfissionalEdificacoes.setAutoExclusive(True)
+        self.lineEditResponsavelExecucaoRegistro.clear()
+        self.lineEditResponsavelExecucaoInscricao.clear()
+        self.lineEditResponsavelExecucaoNome.clear()
+        self.lineEditResponsavelExecucaoEmail.clear()
+
+        self.checkBoxResponsavelExecucaoDistinto.setEnabled(True)
+        self.labelResponsavelExecucaoProfissional.setEnabled(True)
+        self.radioButtonResponsavelExecucaoProfissionalEngCivil.setEnabled(True)
+        self.radioButtonResponsavelExecucaoProfissionalArquitetura.setEnabled(True)
+        self.radioButtonResponsavelExecucaoProfissionalEdificacoes.setEnabled(True)
+        self.labelResponsavelExecucaoRegistro.setEnabled(True)
+        self.lineEditResponsavelExecucaoRegistro.setEnabled(True)
+        self.labelResponsavelExecucaoInscricao.setEnabled(True)
+        self.lineEditResponsavelExecucaoInscricao.setEnabled(True)
+        self.labelResponsavelExecucaoNome.setEnabled(True)
+        self.lineEditResponsavelExecucaoNome.setEnabled(True)
+        self.labelResponsavelExecucaoEmail.setEnabled(True)
+        self.lineEditResponsavelExecucaoEmail.setEnabled(True)
+
+        # Se for desmarcado, sincroniza os dados de novo
+        if not checked:
+            self.desativar_campos_execucao()
+            self.atualizar_execucao()
+
+    def dessincronizar_profissionais_distintos(self, checked):
+        self.checkBoxAutorProjetoDistinto.setChecked(checked)
+
+    def atualizar_execucao(self):
+        """Copia os dados de Autor → Execução quando NÃO for distinto"""
+        if not self.checkBoxAutorProjetoDistinto.isChecked():
+
+
+            # Sincronizar radioButtons
+            self.radioButtonResponsavelExecucaoProfissionalEngCivil.setChecked(self.radioButtonAutorProjetoProfissionalEngCivil.isChecked())
+            self.radioButtonResponsavelExecucaoProfissionalArquitetura.setChecked(self.radioButtonAutorProjetoProfissionalArquitetura.isChecked())
+            self.radioButtonResponsavelExecucaoProfissionalEdificacoes.setChecked(self.radioButtonAutorProjetoProfissionalEdificacoes.isChecked())
+
+            # Copiar LineEdits
+            self.lineEditResponsavelExecucaoRegistro.setText(self.lineEditAutorProjetoRegistro.text())
+            self.lineEditResponsavelExecucaoInscricao.setText(self.lineEditAutorProjetoInscricao.text())
+            self.lineEditResponsavelExecucaoNome.setText(self.lineEditAutorProjetoNome.text())
+            self.lineEditResponsavelExecucaoEmail.setText(self.lineEditAutorProjetoEmail.text())
 
 
     def closeEvent(self, event):
@@ -226,61 +302,19 @@ class CadastroARADialog(QtWidgets.QDialog, Ui_GerenciadorARADialogCadastrar):
     def ir_para_aba_tecnico(self):
         self.tabWidgetCadastrar.setCurrentIndex(3)
 
-    
-    '''
-    # Será corrigido com a implantação do limpar_dados_responsavel_execucao e limpar_dados_autor_projeto
-    def preencher_dados_responsavel(self):
-        if self.checkBoxExecucao.isChecked():
 
-            # Copiar o tipo de responsabilidade técnica
-            if self.radioButtonProjetoEngCivil.isChecked():
-                self.radioButtonExecucaoEngCivil.setChecked(True)
-            elif self.radioButtonProjetoArquitetura.isChecked():
-                self.radioButtonExecucaoArquitetura.setChecked(True)
-            elif self.radioButtonProjetoEdificacoes.isChecked():
-                self.radioButtonExecucaoEdificacoes.setChecked(True)
+    def confirmar_limpeza(self):
+        '''Pergunta antes de limpar os campos.'''
+        reply = QMessageBox.question(
+            self,
+            "Confirmar Limpeza",
+            "Tem certeza que deseja limpar todos os campos?",
+            QMessageBox.Yes | QMessageBox.No,
+            QMessageBox.No
+        )
+        if reply == QMessageBox.Yes:
+            self.limpar_campos()
 
-            # Copiar o gênero
-            if self.radioButtonProjetoFeminino.isChecked():
-                self.radioButtonExecucaoFeminino.setChecked(True)
-            elif self.radioButtonProjetoMasculino.isChecked():
-                self.radioButtonExecucaoMasculino.setChecked(True)
-
-            # Copiar os campos de texto
-            self.lineEditExecucaoRegistro.setText(self.lineEditProjetoRegistro.text())
-            self.lineEditExecucaoInscricao.setText(self.lineEditProjetoInscricao.text())
-            self.lineEditExecucaoNome.setText(self.lineEditProjetoNome.text())
-            self.lineEditExecucaoEmail.setText(self.lineEditProjetoEmail.text())
-
-
-
-        else:
-            # Limpar os campos da Execução se o checkbox for desmarcado
-            self.lineEditExecucaoRegistro.clear()
-            self.lineEditExecucaoInscricao.clear()
-            self.lineEditExecucaoNome.clear()
-            self.lineEditExecucaoEmail.clear()
-
-            self.radioButtonExecucaoEngCivil.setAutoExclusive(False)
-            self.radioButtonExecucaoArquitetura.setAutoExclusive(False)
-            self.radioButtonExecucaoEdificacoes.setAutoExclusive(False)
-            self.radioButtonExecucaoEngCivil.setChecked(False)
-            self.radioButtonExecucaoArquitetura.setChecked(False)
-            self.radioButtonExecucaoEdificacoes.setChecked(False)
-            self.radioButtonExecucaoEngCivil.setAutoExclusive(True)
-            self.radioButtonExecucaoArquitetura.setAutoExclusive(True)
-            self.radioButtonExecucaoEdificacoes.setAutoExclusive(True)
-
-            self.radioButtonExecucaoFeminino.setAutoExclusive(False)
-            self.radioButtonExecucaoMasculino.setAutoExclusive(False)
-            self.radioButtonExecucaoFeminino.setChecked(False)
-            self.radioButtonExecucaoMasculino.setChecked(False)
-            self.radioButtonExecucaoFeminino.setAutoExclusive(True)
-            self.radioButtonExecucaoMasculino.setAutoExclusive(True)
-
-            self.labelExecucaoRegistro.setText("Registro:")
-            self.lineEditExecucaoRegistro.setInputMask("")
-    '''
 
     def limpar_campos(self):
         self.tabWidgetCadastrar.setCurrentIndex(0)
@@ -324,9 +358,40 @@ class CadastroARADialog(QtWidgets.QDialog, Ui_GerenciadorARADialogCadastrar):
         self.comboBoxMacrozoneamento.setCurrentIndex(0)
 
         self.lineEditCotaMaisBaixa.clear()
-        self.lineEditCotaMaisBaixaDecimais.clear()
+        self.lineEditCotaMaisBaixaDecimais.setText('00')
         self.lineEditCotaMaisAlta.clear()
-        self.lineEditCotaMaisAltaDecimais.clear()
+        self.lineEditCotaMaisAltaDecimais.setText('00')
+
+        # Aba Técnico
+        self.radioButtonAutorProjetoProfissionalEngCivil.setChecked(False)
+        self.radioButtonAutorProjetoProfissionalArquitetura.setChecked(False)
+        self.radioButtonAutorProjetoProfissionalEdificacoes.setChecked(False)
+        self.radioButtonAutorProjetoProfissionalEngCivil.setAutoExclusive(False)
+        self.radioButtonAutorProjetoProfissionalArquitetura.setAutoExclusive(False)
+        self.radioButtonAutorProjetoProfissionalEdificacoes.setAutoExclusive(False)
+
+        self.radioButtonResponsavelExecucaoProfissionalEngCivil.setChecked(False)
+        self.radioButtonResponsavelExecucaoProfissionalArquitetura.setChecked(False)
+        self.radioButtonResponsavelExecucaoProfissionalEdificacoes.setChecked(False)
+        self.radioButtonResponsavelExecucaoProfissionalEngCivil.setAutoExclusive(False)
+        self.radioButtonResponsavelExecucaoProfissionalArquitetura.setAutoExclusive(False)
+        self.radioButtonResponsavelExecucaoProfissionalEdificacoes.setAutoExclusive(False)
+
+        self.lineEditAutorProjetoRegistro.clear()
+        self.lineEditAutorProjetoInscricao.clear()
+        self.lineEditAutorProjetoNome.clear()
+        self.lineEditAutorProjetoEmail.clear()
+        
+        self.lineEditResponsavelExecucaoRegistro.clear()
+        self.lineEditResponsavelExecucaoInscricao.clear()
+        self.lineEditResponsavelExecucaoNome.clear()
+        self.lineEditResponsavelExecucaoEmail.clear()
+
+        self.checkBoxAutorProjetoDistinto.setChecked(False)
+        self.checkBoxResponsavelExecucaoDistinto.setChecked(False)
+
+
+
 
     def buscar_endereco_por_cep(self, cep):
         import requests
@@ -353,12 +418,12 @@ class CadastroARADialog(QtWidgets.QDialog, Ui_GerenciadorARADialogCadastrar):
         else:
             self.lineEditNomeLogradouro.setText('')
 
-    def dms_para_decimal(graus, minutos, segundos, decimais, direcao):
+    def dms_para_decimal(self, graus, minutos, segundos, decimais, direcao):
         try:
             graus = int(graus)
-            minutos = int(minutos)
-            segundos = int(segundos)
-            decimais = int(decimais)
+            minutos = int(minutos) if minutos else 0
+            segundos = int(segundos) if segundos else 0
+            decimais = int(decimais) if decimais else 0
         except ValueError:
             return None  # inválido
 
@@ -384,16 +449,26 @@ class CadastroARADialog(QtWidgets.QDialog, Ui_GerenciadorARADialogCadastrar):
             if selecionados:
                 poligono = selecionados[0].geometry()
                 return poligono.centroid().asPoint()
+            else:
+                inscricao = inscricao[:10] + '0000'
+                expressao = f""""rotulo" = '{inscricao}'"""
+                camada_lotes.selectByExpression(expressao)
+                selecionados = camada_lotes.selectedFeatures()
+                camada_lotes.removeSelection()
+
+                if selecionados:
+                    poligono = selecionados[0].geometry()
+                    return poligono.centroid().asPoint()
 
         # Caso não encontre o polígono, usa lat/lon manual
-        lat = dms_para_decimal(
+        lat = self.dms_para_decimal(
             self.lineEditLatitudeGraus.text(),
             self.lineEditLatitudeMinutos.text(),
             self.lineEditLatitudeSegundos.text(),
             self.lineEditLatitudeSegundosDecimais.text(),
             'S'
         )
-        lon = dms_para_decimal(
+        lon = self.dms_para_decimal(
             self.lineEditLongitudeGraus.text(),
             self.lineEditLongitudeMinutos.text(),
             self.lineEditLongitudeSegundos.text(),
@@ -472,6 +547,91 @@ class CadastroARADialog(QtWidgets.QDialog, Ui_GerenciadorARADialogCadastrar):
         assoc["numero_processo"] = numero_processo
         assoc["cpf_requerente"] = cpf
         return camada_assoc.addFeature(assoc)
+    
+
+    def confirmar_salvar(self):
+        """Confere preenchimento das abas e pede confirmação antes de salvar."""
+
+        # Verifica campos obrigatórios da aba Processo
+        processo_ok = all([
+            self.lineEditProcesso.text().strip(),
+            self.spinBoxAno.value(),
+            self.dateEditAbertura.date().isValid(),
+            self.lineEditRequerenteCPF.text().strip(),
+            self.lineEditRequerenteNome.text().strip()
+        ])
+
+        # Verifica campos obrigatórios da aba Local
+        local_ok = all([
+            self.lineEditInscricao.text().strip(),
+            self.lineEditCEP.text().strip(),
+            self.lineEditNomeLogradouro.text().strip(),
+            self.lineEditNumPredial.text().strip()
+        ])
+
+        # Se Processo ou Local não estiverem completos → erro
+        if not processo_ok or not local_ok:
+            QMessageBox.warning(
+                self,
+                "Campos obrigatórios",
+                "Preencha todos os campos obrigatórios das abas <b>Processo</b> e <b>Local</b> "
+                "antes de salvar o cadastro."
+            )
+            return
+
+        # Verifica se Projeto e Técnico têm algo preenchido
+        tipo_projeto_ok = any([
+            self.checkBoxConstrucao.isChecked(),
+            self.checkBoxAmpliacao.isChecked(),
+            self.checkBoxTransformacao.isChecked(),
+            self.checkBoxRegularizacao.isChecked()
+        ])
+
+        projeto_ok = all([
+            self.comboBoxAtividade.currentIndex() != 0,
+            self.comboBoxZoneamento.currentIndex() != 0,
+            self.comboBoxMacrozoneamento.currentIndex() != 0,
+            self.lineEditCotaMaisBaixa.text().strip(),
+            self.lineEditCotaMaisAlta.text().strip()
+        ])
+
+        autor_tecnico_ok = any([
+            self.radioButtonAutorProjetoProfissionalEngCivil.isChecked(),
+            self.radioButtonAutorProjetoProfissionalArquitetura.isChecked(),
+            self.radioButtonAutorProjetoProfissionalEdificacoes.isChecked()
+        ])
+
+        responsavel_tecnico_ok = any([
+            self.radioButtonResponsavelExecucaoProfissionalEngCivil.isChecked(),
+            self.radioButtonResponsavelExecucaoProfissionalArquitetura.isChecked(),
+            self.radioButtonResponsavelExecucaoProfissionalEdificacoes.isChecked()
+        ])
+
+        tecnico_ok = all([
+            self.lineEditAutorProjetoRegistro.text().strip(),
+            self.lineEditAutorProjetoInscricao.text().strip(),
+            self.lineEditAutorProjetoNome.text().strip(),
+            self.lineEditAutorProjetoEmail.text().strip(),
+            self.lineEditResponsavelExecucaoRegistro.text().strip(),
+            self.lineEditResponsavelExecucaoInscricao.text().strip(),
+            self.lineEditResponsavelExecucaoNome.text().strip(),
+            self.lineEditResponsavelExecucaoEmail.text().strip()
+        ])
+
+        if not tipo_projeto_ok or not projeto_ok or not autor_tecnico_ok or not responsavel_tecnico_ok or not tecnico_ok:
+            reply = QMessageBox.question(
+                self,
+                "Confirmação",
+                "As abas <b>Projeto</b> e/ou <b>Técnico</b> não estão totalmente preenchidas.\n\n"
+                "Deseja continuar mesmo assim?",
+                QMessageBox.Yes | QMessageBox.No,
+                QMessageBox.No
+            )
+            if reply == QMessageBox.No:
+                return
+
+        # Se passou pelas verificações → salvar de fato
+        self.salvar_dados_processo()
 
     def salvar_dados_processo(self):
         numero_processo = self._obter_numero_processo()
@@ -500,6 +660,8 @@ class CadastroARADialog(QtWidgets.QDialog, Ui_GerenciadorARADialogCadastrar):
             "dados_projeto": QgsProject.instance().mapLayersByName("dados_projeto"),
             "requerentes": QgsProject.instance().mapLayersByName("requerentes"),
             "processo_requerente": QgsProject.instance().mapLayersByName("processo_requerente"),
+            "tecnicos": QgsProject.instance().mapLayersByName("tecnicos"),
+            "processo_tecnicos": QgsProject.instance().mapLayersByName("processo_tecnicos"),
         }
 
         if not all(camadas.values()):
@@ -512,7 +674,9 @@ class CadastroARADialog(QtWidgets.QDialog, Ui_GerenciadorARADialogCadastrar):
         camada_proj = camadas["dados_projeto"][0]
         camada_reqs = camadas["requerentes"][0]
         camada_assoc = camadas["processo_requerente"][0]
-
+        camada_tec = camadas["tecnicos"][0]
+        camada_resps = camadas["processo_tecnicos"][0]
+        
         # Inicia edição
         for camada in [camada_proc, camada_local, camada_proj, camada_reqs, camada_assoc]:
             camada.startEditing()
@@ -522,6 +686,7 @@ class CadastroARADialog(QtWidgets.QDialog, Ui_GerenciadorARADialogCadastrar):
             ok2 = self._salvar_em_dados_localizacao(camada_local, numero_processo, inscricao, cep, endereco, numero_predial, lat, lon)
             ok3 = self._salvar_em_dados_projeto(camada_proj, numero_processo)
             ok4 = self._salvar_em_requerentes_e_associacao(camada_reqs, camada_assoc, cpf, nome, numero_processo)
+            # ok5 = self._salvar_em_tecnicos_e_associacao(self, camada_tec, camada_resps, )
 
             if all([ok1, ok2, ok3, ok4]):
                 for camada in [camada_proc, camada_local, camada_proj, camada_reqs, camada_assoc]:
