@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>885</width>
-    <height>557</height>
+    <width>750</width>
+    <height>550</height>
    </rect>
   </property>
   <property name="sizePolicy">
-   <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+   <sizepolicy hsizetype="Ignored" vsizetype="Expanding">
     <horstretch>0</horstretch>
     <verstretch>0</verstretch>
    </sizepolicy>
@@ -297,7 +297,7 @@ DEPARTAMENTO DE GESTÃO DE OBRAS PARTICULARES</string>
         </font>
        </property>
        <property name="currentIndex">
-        <number>2</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="tabProcesso">
         <attribute name="title">
@@ -639,7 +639,7 @@ DEPARTAMENTO DE GESTÃO DE OBRAS PARTICULARES</string>
                 <item row="0" column="0">
                  <layout class="QVBoxLayout" name="verticalLayoutRequerente_0_0">
                   <item>
-                   <widget class="QLabel" name="labelRequerenteCPF">
+                   <widget class="QLabel" name="labelRequerenteCPF_CNPJ">
                     <property name="sizePolicy">
                      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                       <horstretch>0</horstretch>
@@ -647,12 +647,12 @@ DEPARTAMENTO DE GESTÃO DE OBRAS PARTICULARES</string>
                      </sizepolicy>
                     </property>
                     <property name="text">
-                     <string>CPF:</string>
+                     <string>CPF/CNPJ:</string>
                     </property>
                    </widget>
                   </item>
                   <item>
-                   <widget class="QLineEdit" name="lineEditRequerenteCPF">
+                   <widget class="QLineEdit" name="lineEditRequerenteCPF_CNPJ">
                     <property name="sizePolicy">
                      <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
                       <horstretch>0</horstretch>
@@ -678,7 +678,7 @@ DEPARTAMENTO DE GESTÃO DE OBRAS PARTICULARES</string>
                      </font>
                     </property>
                     <property name="inputMask">
-                     <string>000.000.000-00;_</string>
+                     <string>00000000000000;_</string>
                     </property>
                     <property name="alignment">
                      <set>Qt::AlignCenter</set>
@@ -3388,7 +3388,7 @@ DEPARTAMENTO DE GESTÃO DE OBRAS PARTICULARES</string>
   <tabstop>comboBoxTipoProcesso</tabstop>
   <tabstop>dateEditAbertura</tabstop>
   <tabstop>comboBoxTipoAlvara</tabstop>
-  <tabstop>lineEditRequerenteCPF</tabstop>
+  <tabstop>lineEditRequerenteCPF_CNPJ</tabstop>
   <tabstop>lineEditRequerenteNome</tabstop>
   <tabstop>pushButtonVoltarProcesso</tabstop>
   <tabstop>pushButtonAvancarProcesso</tabstop>

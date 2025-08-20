@@ -32,7 +32,7 @@ from . import resources_rc
 # Import the code for the dialog
 from .ara_manager_dialog_base import TelaPrincipal
 
-from .utils import buscar_requerente_por_cpf
+from .utils import buscar_requerente_por_cpf_cnpj, buscar_tecnico_por_registro
 
 import os.path
 

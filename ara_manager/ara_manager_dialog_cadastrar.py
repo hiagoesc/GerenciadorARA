@@ -31,10 +31,10 @@ from qgis.PyQt import uic
 from qgis.PyQt import QtWidgets
 from qgis.core import QgsProject, QgsFeature, QgsGeometry, QgsPointXY, QgsExpression, QgsFeatureRequest
 from PyQt5.QtCore import QDate
-from PyQt5.QtWidgets import QMessageBox
+from PyQt5.QtWidgets import QMessageBox, QLineEdit
 from .ara_manager_dialog_cadastrar_ui import Ui_GerenciadorARADialogCadastrar
 from . import resources_rc
-from .utils import buscar_requerente_por_cpf
+from .utils import buscar_requerente_por_cpf_cnpj, buscar_tecnico_por_registro
 
 class CadastroARADialog(QtWidgets.QDialog, Ui_GerenciadorARADialogCadastrar):
     def __init__(self, parent=None):
@@ -49,8 +49,11 @@ class CadastroARADialog(QtWidgets.QDialog, Ui_GerenciadorARADialogCadastrar):
         # Atualiza o campo de data para a data atual
         self.dateEditAbertura.setDate(QDate.currentDate())
 
-        # Atualiza o campo de nome do requerente caso o cpf digitado já esteja cadastrado
-        self.lineEditRequerenteCPF.textChanged.connect(self.ao_digitar_cpf)
+        # Atualiza o campo de nome do requerente caso o cpf/cnpj digitado já esteja cadastrado
+        self.lineEditRequerenteCPF_CNPJ.editingFinished.connect(self.ao_digitar_cpf_cnpj)
+
+        self.lineEditAutorProjetoRegistro.editingFinished.connect(self.ao_digitar_registro)
+        self.lineEditResponsavelExecucaoRegistro.editingFinished.connect(self.ao_digitar_registro)
 
         # Formata os dígitos da inscrição digitados
         self.lineEditQuadra.editingFinished.connect(self.formatar_quadra)
@@ -93,9 +96,6 @@ class CadastroARADialog(QtWidgets.QDialog, Ui_GerenciadorARADialogCadastrar):
         # Conectar o checkbox de "Autor do Projeto" ao sincronizador
         self.checkBoxAutorProjetoDistinto.toggled.connect(self.sincronizar_profissionais_distintos)
         self.checkBoxResponsavelExecucaoDistinto.toggled.connect(self.dessincronizar_profissionais_distintos)
-
-        # Atualiza os campos do técnico caso o checkBox não esteja selecionado
-        self.lineEditRequerenteCPF.textChanged.connect(self.ao_digitar_cpf)
 
         # Botões de navegação entre abas e de cancelamento
         self.pushButtonVoltarProcesso.setEnabled(False)
@@ -202,13 +202,13 @@ class CadastroARADialog(QtWidgets.QDialog, Ui_GerenciadorARADialogCadastrar):
         elif self.radioButtonAutorProjetoProfissionalArquitetura.isChecked():
             self.labelAutorProjetoRegistro.setText("CAU:")
             self.lineEditAutorProjetoRegistro.clear()
-            self.lineEditAutorProjetoRegistro.setInputMask("A000000-0;_")
+            self.lineEditAutorProjetoRegistro.setInputMask("A0000000;_")
             self.lineEditAutorProjetoRegistro.setText("A")
             self.lineEditAutorProjetoRegistro.setCursorPosition(1)
         elif self.radioButtonAutorProjetoProfissionalEdificacoes.isChecked():
             self.labelAutorProjetoRegistro.setText("CRT:")
             self.lineEditAutorProjetoRegistro.clear()
-            self.lineEditAutorProjetoRegistro.setInputMask("000.000.000-00;_") 
+            self.lineEditAutorProjetoRegistro.setInputMask("00000000000;_") 
         else:
             self.labelAutorProjetoRegistro.setText("Registro:")
             self.lineEditAutorProjetoRegistro.clear()
@@ -222,28 +222,70 @@ class CadastroARADialog(QtWidgets.QDialog, Ui_GerenciadorARADialogCadastrar):
         elif self.radioButtonResponsavelExecucaoProfissionalArquitetura.isChecked():
             self.labelResponsavelExecucaoRegistro.setText("CAU:")
             self.lineEditResponsavelExecucaoRegistro.clear()
-            self.lineEditResponsavelExecucaoRegistro.setInputMask("A000000-0;_")
+            self.lineEditResponsavelExecucaoRegistro.setInputMask("A0000000;_")
             self.lineEditResponsavelExecucaoRegistro.setText("A")
             self.lineEditResponsavelExecucaoRegistro.setCursorPosition(1)
         elif self.radioButtonResponsavelExecucaoProfissionalEdificacoes.isChecked():
             self.labelResponsavelExecucaoRegistro.setText("CRT:")
             self.lineEditResponsavelExecucaoRegistro.clear()
-            self.lineEditResponsavelExecucaoRegistro.setInputMask("000.000.000-00;_") 
+            self.lineEditResponsavelExecucaoRegistro.setInputMask("00000000000;_") 
         else:
             self.labelResponsavelExecucaoRegistro.setText("Registro:")
             self.lineEditResponsavelExecucaoRegistro.clear()
             self.lineEditResponsavelExecucaoRegistro.setInputMask("")
 
-    def ao_digitar_cpf(self):
-        texto = self.lineEditRequerenteCPF.text()
-        cpf = re.sub(r'\D', '', texto)  # Remove qualquer coisa que não seja número
 
-        if len(cpf) == 11:
-            nome = buscar_requerente_por_cpf(cpf)
-            if nome:
-                self.lineEditRequerenteNome.setText(nome)
+    def ao_digitar_cpf_cnpj(self):
+        texto = self.lineEditRequerenteCPF_CNPJ.text()
+        numeros = re.sub(r'\D', '', texto)  # Remove qualquer coisa que não seja número
+
+        if len(numeros) > 11:
+            # Configuração como CNPJ
+            self.lineEditRequerenteCPF_CNPJ.setInputMask("00.000.000/0000-00;_")
+            self.labelRequerenteCPF_CNPJ.setText("CNPJ:")
+        
+        elif len(numeros) == 11:
+            # Configuração como CPF
+            self.lineEditRequerenteCPF_CNPJ.setInputMask("000.000.000-00;_")
+            self.labelRequerenteCPF_CNPJ.setText("CPF:")
+        
+        nome = buscar_requerente_por_cpf_cnpj(numeros)
+        if nome:
+            self.lineEditRequerenteNome.setText(nome)
+        else:
+            self.lineEditRequerenteNome.clear()
+        
+
+    def ao_digitar_registro(self):
+        # Descobre qual campo disparou o evento
+        sender = self.sender()
+        print("DEBUG: quem chamou:", sender.objectName(), "valor:", sender.text())
+        if not isinstance(sender, QLineEdit):
+            return
+
+        registro = sender.text().strip()
+        tecnico = buscar_tecnico_por_registro(registro)
+
+        if sender == self.lineEditAutorProjetoRegistro:
+            if tecnico:
+                self.lineEditAutorProjetoInscricao.setText(str(tecnico["inscricao"]))
+                self.lineEditAutorProjetoNome.setText(tecnico["nome"])
+                self.lineEditAutorProjetoEmail.setText(tecnico["email"])
             else:
-                self.lineEditRequerenteNome.clear()
+                self.lineEditAutorProjetoInscricao.clear()
+                self.lineEditAutorProjetoNome.clear()
+                self.lineEditAutorProjetoEmail.clear()
+
+        elif sender == self.lineEditResponsavelExecucaoRegistro:
+            if tecnico:
+                self.lineEditResponsavelExecucaoInscricao.setText(str(tecnico["inscricao"]))
+                self.lineEditResponsavelExecucaoNome.setText(tecnico["nome"])
+                self.lineEditResponsavelExecucaoEmail.setText(tecnico["email"])
+            else:
+                self.lineEditResponsavelExecucaoInscricao.clear()
+                self.lineEditResponsavelExecucaoNome.clear()
+                self.lineEditResponsavelExecucaoEmail.clear()
+
 
     def formatar_quadra(self):
         texto = self.lineEditQuadra.text().strip()
@@ -325,7 +367,9 @@ class CadastroARADialog(QtWidgets.QDialog, Ui_GerenciadorARADialogCadastrar):
         self.comboBoxTipoProcesso.setCurrentIndex(0)
         self.dateEditAbertura.setDate(QDate.currentDate())
         self.comboBoxTipoAlvara.setCurrentIndex(0)
-        self.lineEditRequerenteCPF.clear()
+        self.lineEditRequerenteCPF_CNPJ.clear()
+        self.labelRequerenteCPF_CNPJ.setText("CPF/CNPJ:")
+        self.lineEditRequerenteCPF_CNPJ.setInputMask("00000000000000;_") 
         self.lineEditRequerenteNome.clear()
 
         # Aba Local
@@ -366,16 +410,16 @@ class CadastroARADialog(QtWidgets.QDialog, Ui_GerenciadorARADialogCadastrar):
         self.radioButtonAutorProjetoProfissionalEngCivil.setChecked(False)
         self.radioButtonAutorProjetoProfissionalArquitetura.setChecked(False)
         self.radioButtonAutorProjetoProfissionalEdificacoes.setChecked(False)
-        self.radioButtonAutorProjetoProfissionalEngCivil.setAutoExclusive(False)
-        self.radioButtonAutorProjetoProfissionalArquitetura.setAutoExclusive(False)
-        self.radioButtonAutorProjetoProfissionalEdificacoes.setAutoExclusive(False)
+        self.radioButtonAutorProjetoProfissionalEngCivil.setAutoExclusive(True)
+        self.radioButtonAutorProjetoProfissionalArquitetura.setAutoExclusive(True)
+        self.radioButtonAutorProjetoProfissionalEdificacoes.setAutoExclusive(True)
 
         self.radioButtonResponsavelExecucaoProfissionalEngCivil.setChecked(False)
         self.radioButtonResponsavelExecucaoProfissionalArquitetura.setChecked(False)
         self.radioButtonResponsavelExecucaoProfissionalEdificacoes.setChecked(False)
-        self.radioButtonResponsavelExecucaoProfissionalEngCivil.setAutoExclusive(False)
-        self.radioButtonResponsavelExecucaoProfissionalArquitetura.setAutoExclusive(False)
-        self.radioButtonResponsavelExecucaoProfissionalEdificacoes.setAutoExclusive(False)
+        self.radioButtonResponsavelExecucaoProfissionalEngCivil.setAutoExclusive(True)
+        self.radioButtonResponsavelExecucaoProfissionalArquitetura.setAutoExclusive(True)
+        self.radioButtonResponsavelExecucaoProfissionalEdificacoes.setAutoExclusive(True)
 
         self.lineEditAutorProjetoRegistro.clear()
         self.lineEditAutorProjetoInscricao.clear()
@@ -490,15 +534,19 @@ class CadastroARADialog(QtWidgets.QDialog, Ui_GerenciadorARADialogCadastrar):
         feat["tipo_alvara"] = self.comboBoxTipoAlvara.currentText()
         return camada.addFeature(feat)
 
-    def _salvar_em_dados_localizacao(self, camada, numero_processo, inscricao, cep, endereco, numero_predial, lat, lon):
+    def _salvar_em_dados_localizacao(self, camada, numero_processo, inscricao, cep, endereco, numero_predial, lat_dms, lon_dms, lat, lon, link_maps, link_street_view):
         feat = QgsFeature(camada.fields())
         feat["numero_processo"] = numero_processo
+        feat["latitude_dms"] = lat_dms
+        feat["longitude_dms"] = lon_dms
         feat["latitude"] = lat
         feat["longitude"] = lon
         feat["inscricao_imobiliaria"] = inscricao
         feat["cep_endereco"] = cep
         feat["endereco"] = endereco
         feat["numero_predial"] = numero_predial
+        feat["link_maps"] = link_maps
+        feat["link_street_view"] = link_street_view
         return camada.addFeature(feat)
 
     def _salvar_em_dados_projeto(self, camada, numero_processo):
@@ -531,23 +579,82 @@ class CadastroARADialog(QtWidgets.QDialog, Ui_GerenciadorARADialogCadastrar):
 
         return camada.addFeature(feat)
 
-    def _salvar_em_requerentes_e_associacao(self, camada_reqs, camada_assoc, cpf, nome, numero_processo):
-        expr = QgsExpression(f""""cpf_requerente" = '{cpf}'""")
+    def _salvar_em_requerentes_e_associacao(self, camada_reqs, camada_assoc, cpf_cnpj, nome, numero_processo):
+        expr = QgsExpression(f""""cpf_cnpj_requerente" = '{cpf_cnpj}'""")
         req = QgsFeatureRequest(expr)
-        cpf_existe = any(camada_reqs.getFeatures(req))
+        cpf_cnpj_existe = any(camada_reqs.getFeatures(req))
 
-        if not cpf_existe:
+        if not cpf_cnpj_existe:
             feat = QgsFeature(camada_reqs.fields())
-            feat["cpf_requerente"] = cpf
+            feat["cpf_cnpj_requerente"] = cpf_cnpj
             feat["nome_requerente"] = nome
             if not camada_reqs.addFeature(feat):
                 return False
 
         assoc = QgsFeature(camada_assoc.fields())
         assoc["numero_processo"] = numero_processo
-        assoc["cpf_requerente"] = cpf
+        assoc["cpf_cnpj_requerente"] = cpf_cnpj
         return camada_assoc.addFeature(assoc)
+
+    def _salvar_em_tecnico(self, camada_tec, camada_resps, registro, formacao, nome, inscricao, email):
+        expr = QgsExpression(f""""registro" = '{registro}'""")
+        req = QgsFeatureRequest(expr)
+        registro_existe = any(camada_tec.getFeatures(req))
+
+        if not registro_existe:
+            feat = QgsFeature(camada_tec.fields())
+            feat["registro"] = registro
+            feat["formacao"] = formacao
+            feat["nome"] = nome
+            feat["inscricao"] = inscricao
+            feat["email"] = email
+            if not camada_tec.addFeature(feat):
+                return False
+        return True
+
+
+    def _associar_tecnico(self, camada_tec, camada_resps, tipo, registro, numero_processo):
+        # Procura se já existe associação para este processo
+        expr = f""""numero_processo" = '{numero_processo}'"""
+        for feat in camada_resps.getFeatures(expr):
+            # Já existe registro, atualiza o campo correto
+            camada_resps.startEditing()
+            if tipo == "Projeto":
+                feat["registro_projeto"] = registro
+            elif tipo == "Execução":
+                feat["registro_execucao"] = registro
+            camada_resps.updateFeature(feat)
+            return True
+
+        # Se não encontrou, cria uma nova associação
+        assoc = QgsFeature(camada_resps.fields())
+        assoc["numero_processo"] = numero_processo
+        if tipo == "Projeto":
+            assoc["registro_projeto"] = registro
+        elif tipo == "Execução":
+            assoc["registro_execucao"] = registro
+        return camada_resps.addFeature(assoc)
     
+
+    def obter_profissao_autor_projeto(self):
+        if self.radioButtonAutorProjetoProfissionalEngCivil.isChecked():
+            return "Engenharia Civil"
+        elif self.radioButtonAutorProjetoProfissionalArquitetura.isChecked():
+            return "Arquitetura"
+        elif self.radioButtonAutorProjetoProfissionalEdificacoes.isChecked():
+            return "Técnico em Edificações"
+        else:
+            return None
+
+    def obter_profissao_responsavel_execucao(self):
+        if self.radioButtonResponsavelExecucaoProfissionalEngCivil.isChecked():
+            return "Engenharia Civil"
+        elif self.radioButtonResponsavelExecucaoProfissionalArquitetura.isChecked():
+            return "Arquitetura"
+        elif self.radioButtonResponsavelExecucaoProfissionalEdificacoes.isChecked():
+            return "Técnico em Edificações"
+        else:
+            return None
 
     def confirmar_salvar(self):
         """Confere preenchimento das abas e pede confirmação antes de salvar."""
@@ -557,7 +664,7 @@ class CadastroARADialog(QtWidgets.QDialog, Ui_GerenciadorARADialogCadastrar):
             self.lineEditProcesso.text().strip(),
             self.spinBoxAno.value(),
             self.dateEditAbertura.date().isValid(),
-            self.lineEditRequerenteCPF.text().strip(),
+            self.lineEditRequerenteCPF_CNPJ.text().strip(),
             self.lineEditRequerenteNome.text().strip()
         ])
 
@@ -639,8 +746,21 @@ class CadastroARADialog(QtWidgets.QDialog, Ui_GerenciadorARADialogCadastrar):
         cep = self.lineEditCEP.text().strip()
         endereco = self.lineEditNomeLogradouro.text().strip()
         numero_predial = self.lineEditNumPredial.text().strip()
-        cpf = self.lineEditRequerenteCPF.text().strip()
+        cpf_cnpj = re.sub(r'\D', '', self.lineEditRequerenteCPF_CNPJ.text().strip())
         nome = self.lineEditRequerenteNome.text().strip()
+        lat_dms = self.lineEditLatitudeGraus.text()+"°"+self.lineEditLatitudeMinutos.text()+"'"+self.lineEditLatitudeSegundos.text()+','+self.lineEditLatitudeSegundosDecimais.text()+'"'+'S'
+        lon_dms = self.lineEditLongitudeGraus.text()+"°"+self.lineEditLongitudeMinutos.text()+"'"+self.lineEditLongitudeSegundos.text()+','+self.lineEditLongitudeSegundosDecimais.text()+'"'+'O'
+        registro_projeto = self.lineEditAutorProjetoRegistro.text().strip()
+        formacao_projeto = self.obter_profissao_autor_projeto()
+        nome_projeto = self.lineEditAutorProjetoNome.text().strip()
+        inscricao_projeto = self.lineEditAutorProjetoInscricao.text().strip()
+        email_projeto = self.lineEditAutorProjetoEmail.text().strip()
+        registro_execucao = self.lineEditResponsavelExecucaoRegistro.text().strip()
+        formacao_execucao = self.obter_profissao_responsavel_execucao()
+        nome_execucao = self.lineEditResponsavelExecucaoNome.text().strip()
+        inscricao_execucao = self.lineEditResponsavelExecucaoInscricao.text().strip()
+        email_execucao = self.lineEditResponsavelExecucaoEmail.text().strip()
+
 
         ponto_latlon = self._obter_ponto_processo(inscricao)
         if not ponto_latlon:
@@ -652,6 +772,29 @@ class CadastroARADialog(QtWidgets.QDialog, Ui_GerenciadorARADialogCadastrar):
             ponto = ponto_latlon
             lat = ponto.y()
             lon = ponto.x()
+
+        link_maps = "https://www.google.com/maps?q="+str(self.dms_para_decimal(
+            self.lineEditLatitudeGraus.text(),
+            self.lineEditLatitudeMinutos.text(),
+            self.lineEditLatitudeSegundos.text(),
+            self.lineEditLatitudeSegundosDecimais.text(),
+            'S'))+","+str(self.dms_para_decimal(
+            self.lineEditLongitudeGraus.text(),
+            self.lineEditLongitudeMinutos.text(),
+            self.lineEditLongitudeSegundos.text(),
+            self.lineEditLongitudeSegundosDecimais.text(),
+            'O'))
+        link_street_view = "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint="+str(self.dms_para_decimal(
+            self.lineEditLatitudeGraus.text(),
+            self.lineEditLatitudeMinutos.text(),
+            self.lineEditLatitudeSegundos.text(),
+            self.lineEditLatitudeSegundosDecimais.text(),
+            'S'))+","+str(self.dms_para_decimal(
+            self.lineEditLongitudeGraus.text(),
+            self.lineEditLongitudeMinutos.text(),
+            self.lineEditLongitudeSegundos.text(),
+            self.lineEditLongitudeSegundosDecimais.text(),
+            'O'))
 
         # Camadas
         camadas = {
@@ -678,23 +821,102 @@ class CadastroARADialog(QtWidgets.QDialog, Ui_GerenciadorARADialogCadastrar):
         camada_resps = camadas["processo_tecnicos"][0]
         
         # Inicia edição
-        for camada in [camada_proc, camada_local, camada_proj, camada_reqs, camada_assoc]:
+        for camada in [camada_proc, camada_local, camada_proj, camada_reqs, camada_assoc, camada_tec, camada_resps]:
             camada.startEditing()
 
         try:
-            ok1 = self._salvar_em_processos_ara(camada_proc, ponto, numero_processo)
-            ok2 = self._salvar_em_dados_localizacao(camada_local, numero_processo, inscricao, cep, endereco, numero_predial, lat, lon)
-            ok3 = self._salvar_em_dados_projeto(camada_proj, numero_processo)
-            ok4 = self._salvar_em_requerentes_e_associacao(camada_reqs, camada_assoc, cpf, nome, numero_processo)
-            # ok5 = self._salvar_em_tecnicos_e_associacao(self, camada_tec, camada_resps, )
+            ok1 = self._salvar_em_processos_ara(
+                camada_proc,
+                ponto,
+                numero_processo
+            )
+            ok2 = self._salvar_em_dados_localizacao(
+                camada_local,
+                numero_processo,
+                inscricao,
+                cep,
+                endereco,
+                numero_predial,
+                lat_dms,
+                lon_dms,
+                lat,
+                lon,
+                link_maps,
+                link_street_view
+            )
+            ok3 = self._salvar_em_dados_projeto(
+                camada_proj,
+                numero_processo
+            )
+            ok4 = self._salvar_em_requerentes_e_associacao(
+                camada_reqs,
+                camada_assoc,
+                cpf_cnpj,
+                nome,
+                numero_processo
+            )
+            ok5 = self._salvar_em_tecnico(
+                camada_tec,
+                camada_resps,
+                registro_projeto,
+                formacao_projeto,
+                nome_projeto,
+                inscricao_projeto,
+                email_projeto
+            )
+            ok6 = self._associar_tecnico(
+                camada_tec,
+                camada_resps,
+                "Projeto",
+                registro_projeto,
+                numero_processo
+            )
+            if self.checkBoxAutorProjetoDistinto.isChecked():
+                ok7 = self._salvar_em_tecnico(
+                    camada_tec,
+                    camada_resps,
+                    registro_execucao,
+                    formacao_execucao,
+                    nome_execucao,
+                    inscricao_execucao,
+                    email_execucao
+                )
+                ok8 = self._associar_tecnico(
+                    camada_tec,
+                    camada_resps,
+                    "Execução",
+                    registro_execucao,
+                    numero_processo
+                )
 
-            if all([ok1, ok2, ok3, ok4]):
-                for camada in [camada_proc, camada_local, camada_proj, camada_reqs, camada_assoc]:
-                    camada.commitChanges()
-                    camada.triggerRepaint()
-                QMessageBox.information(self, "Sucesso", "Dados salvos com sucesso.")
+                if all([ok1, ok2, ok3, ok4, ok5, ok6, ok7, ok8]):
+                    for camada in [camada_proc, camada_local, camada_proj, camada_reqs, camada_assoc, camada_tec, camada_resps]:
+                        camada.commitChanges()
+                        camada.triggerRepaint()
+                    QMessageBox.information(self, "Sucesso", "Dados salvos com sucesso.")
+                    self.close()
+                else:
+                    raise Exception("Erro ao adicionar uma ou mais feições.")
+
             else:
-                raise Exception("Erro ao adicionar uma ou mais feições.")
+                ok7 = self._associar_tecnico(
+                    camada_tec,
+                    camada_resps,
+                    "Execução",
+                    registro_projeto,
+                    numero_processo
+                )
+
+                if all([ok1, ok2, ok3, ok4, ok5, ok6, ok7]):
+                    for camada in [camada_proc, camada_local, camada_proj, camada_reqs, camada_assoc, camada_tec, camada_resps]:
+                        camada.commitChanges()
+                        camada.triggerRepaint()
+                    QMessageBox.information(self, "Sucesso", "Dados salvos com sucesso.")
+                    self.close()
+                else:
+                    raise Exception("Erro ao adicionar uma ou mais feições.")
+
+
         except Exception as e:
             for camada in [camada_proc, camada_local, camada_proj, camada_reqs, camada_assoc]:
                 camada.rollBack()
