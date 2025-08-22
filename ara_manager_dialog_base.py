@@ -25,6 +25,7 @@
 from qgis.PyQt import QtWidgets
 from .ara_manager_dialog_base_ui import Ui_GerenciadorARADialogBase
 from .ara_manager_dialog_cadastrar import CadastroARADialog
+from .ara_manager_dialog_relatorio import RelatorioARADialog
 from . import resources_rc
 
 class TelaPrincipal(QtWidgets.QDialog, Ui_GerenciadorARADialogBase):
@@ -34,7 +35,12 @@ class TelaPrincipal(QtWidgets.QDialog, Ui_GerenciadorARADialogBase):
 
         # Conectando o botão "Cadastrar Processo"
         self.pushButtonCadastrar.clicked.connect(self.abrir_tela_cadastro)
+        self.pushButtonRelatorio.clicked.connect(self.abrir_tela_relatorio)
 
     def abrir_tela_cadastro(self):
         dialog = CadastroARADialog(self)
+        dialog.exec_()
+
+    def abrir_tela_relatorio(self):
+        dialog = RelatorioARADialog(self)
         dialog.exec_()
